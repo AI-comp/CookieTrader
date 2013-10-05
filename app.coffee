@@ -14,7 +14,8 @@ app.configure(() ->
 )
 
 server = http.createServer(app)
-controller.start(app, io.listen(server))
+controller.routes(app)
+controller.websocket(io.listen(server))
 
 port = process.env.PORT || 5000
 

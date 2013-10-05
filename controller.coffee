@@ -1,17 +1,16 @@
-start = (app, io) ->
+routes = (app) ->
   app.get('/', (req, res) ->
     console.log("hello, world!");
     res.render('index.ejs', {locals:{ message: "Hello, world!" }});
   )
 
-  io.on('connection', (client) ->
-    client.on('message', (message) ->
-      d = new Date()
-      data = message + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-      client.emit('message', data)
-      client.broadcast.emit('message', data)
-      console.log(data)
+websocket = (io) ->
+  io.sockets.on('connection', (socket) ->
+    socket.on('message', (message) ->
+      socket.send(message)
+      socket.broadcast.emit(message)
     )
   )
 
-exports.start = start
+exports.routes = routes
+exports.websocket = websocket
