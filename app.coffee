@@ -7,6 +7,7 @@ app.configure(() ->
   app.use(express.methodOverride())
   app.use(express.cookieParser())
   app.use(express.session({ secret: 'secret' }))
+  app.use(express.static(__dirname + '/public'))
 )
 
 controller.start(app)
