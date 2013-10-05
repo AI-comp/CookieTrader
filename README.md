@@ -12,3 +12,13 @@ Welcom to Cookie Trader
 
 - 部屋とかは無し
 - アイテムが1個買われると、次の値段は1.15倍
+
+## How to Setup Development Environment
+
+    npm install
+
+
+## How to Start Web Application
+
+    coffee app.coffee
+
