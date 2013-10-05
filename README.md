@@ -1,5 +1,4 @@
 # Cookie Trader
----
 
 Welcom to Cookie Trader
 
