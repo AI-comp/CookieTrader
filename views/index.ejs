@@ -98,8 +98,16 @@ $(function() {
   });
 
   // メッセージ受信イベントを処理
-  socket.on('message', function(from, msg) {
+  socket.on('message', function(msg) {
     console.log('Received : ' + msg);
+  });
+
+  socket.on('buy', function (msg) {
+    var obj = JSON.parse(msg),
+        bakeryName = obj.bakeryName,
+        price = parseInt(obj.price, 10),
+        cps = 10;
+    player.buy(bakeryName, price, cps);
   });
 
   $(document).keydown(function (e) {
@@ -112,7 +120,7 @@ $(function() {
     var id = e.target.id;
     id.match(/bakery-(.+)/);
     var bakeryName = RegExp.$1;
-    player.buy(bakeryName, 100);
+    socket.emit('buy', { 'bakery': bakeryName })
   });
 
   var prevTime = new Date().getTime();
