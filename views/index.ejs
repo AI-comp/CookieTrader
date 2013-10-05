@@ -28,7 +28,7 @@
         $(this).fadeOut('slow');
       });
     });
-
+    
     function check1() {
       alert($("#text").val());
       socket.emit("message", $("#text").val());
@@ -41,5 +41,16 @@
     <p>おばけー（クリックしよう！）</p>
     <input type="text" id="text" value="" size="20">
     <input type="button" onclick="check1();" value="Send">
+    
+    <script>
+      // アルファベットをランダムに10個表示
+      var message = "";
+      var alphabet = "qwertyuiopasdfghjklzxcvbnm";
+      for(var i = 0; i < 10; i++) {
+        message += alphabet.charAt((Math.random()*26)%26);
+      }
+      document.write(message);
+    </script>
+    
   </body>
 </html>
