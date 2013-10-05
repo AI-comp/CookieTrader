@@ -14,8 +14,11 @@ Welcom to Cookie Trader
 - アイテムが1個買われると、次の値段は1.15倍
 
 ## How to Setup Development Environment
-1. ```npm install```
+
+    npm install
 
 
 ## How to Start Web Application
-1. ```coffee app.coffee```
+
+    coffee app.coffee
+
