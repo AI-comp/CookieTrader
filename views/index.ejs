@@ -2,9 +2,25 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>CookieTrader</title>
+
+    <script>
+    $(function() {
+      $('p').click(function() {
+      	$(this).fadeOut('slow');
+      });
+    });
+
+    function check1() {
+      alert($("#text").val());
+    }
+    </script>
   </head>
   <body>
-  <h1><%= message %></h1>
+    <h1><%= message %></h1>
+	<p>おばけー（クリックしよう！）</p>
+	<input type="text" id="text" value="" size="20">
+	<input type="button" onclick="check1();" value="Send">
   </body>
 </html>
