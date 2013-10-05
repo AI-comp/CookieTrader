@@ -1,8 +1,10 @@
 express = require('express')
+http = require('http')
+io = require('socket.io')
 controller = require('./controller')
 
 app = express()
-app.configure(() -> 
+app.configure(() ->
   app.use(express.bodyParser())
   app.use(express.methodOverride())
   app.use(express.cookieParser())
@@ -10,8 +12,11 @@ app.configure(() ->
   app.use(express.static(__dirname + '/public'))
 )
 
-controller.start(app)
+server = http.createServer(app)
+controller.start(app, io.listen(server))
+
 port = process.env.PORT || 5000
-app.listen(port, ->
+
+server.listen(port, ->
   console.log("Listening on " + port + "\nPress CTRL-C to stop server.")
 )
