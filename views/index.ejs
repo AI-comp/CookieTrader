@@ -39,6 +39,8 @@
     }
 
     function purchase(itemName) {
+      count = cookie.count;
+      alert(count);
       socket.emit("purchase", {item: itemName, cookie: 1000});
     }
     </script>
