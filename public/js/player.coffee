@@ -25,6 +25,7 @@ class Player extends Base
   constructor: ->
     super()
     @hookable('totalCookie')
+    @hookable('currentCps')
 
     @bakeries = {
       'Cursor':              0,
@@ -52,8 +53,9 @@ class Player extends Base
   clickCookie: ->
     @totalCookie += @cookiePerClick
 
-  buy: (bakeryName, price) ->
+  buy: (bakeryName, price, cps) ->
     @bakeries[bakeryName] += 1
     @totalCookie      -= price
+    @increaseCps(3)
 
 this.Player = Player

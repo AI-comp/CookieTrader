@@ -25,23 +25,23 @@
           <div class="item">C</div>
           <div class="item">D</div>
         </div>
-        <td class="cps"><span id="my-total-cookie" class="total-cookie">1,000</span> Cookies<br>100 CpS
-        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
-        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
-        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
+        <td class="cps"><span id="my-total-cookie" class="total-cookie">1,000</span> Cookies<br><span id="my-cps" class="cps">100</span> CpS
+          <td class="cps"><span class="total-cookie">1,000</span> <span class="cps">Cookies</span><br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
       <tr><td>Cursor<br> 23 Cookie<br>Total 4
         <td><div class="cps">3 x 1 CpS</div>
           <div class="upgrades-mini">
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
-            <div class="item">A</div>
+            <div id="bakery-Cursor" class="item">A</div>
+            <div id="bakery-Gramdma" class="item">A</div>
+            <div id="bakery-Farm" class="item">A</div>
+            <div id="bakery-Factory" class="item">A</div>
+            <div id="bakery-Mine" class="item">A</div>
+            <div id="bakery-Shipment" class="item">A</div>
+            <div id="bakery-AlchemyLab" class="item">A</div>
+            <div id="bakery-Portal" class="item">A</div>
+            <div id="bakery-TimeMachine" class="item">A</div>
+            <div id="bakery-AntimatterCondenser" class="item">A</div>
           </div>
         <td><div class="cps">1 x 1 CpS</div>
         <td><div class="cps">0 x 1 CpS</div>
@@ -82,6 +82,9 @@ $(function() {
   player.hook('totalCookie', function (v) {
     $('#my-total-cookie').text(pretty(player.totalCookie));
   });
+  player.hook('currentCps', function (v) {
+    $('#my-cps').text(v);
+  });
 
   // WebSocketサーバに接続
   var socket = io.connect('http://localhost:5000/');
@@ -103,6 +106,13 @@ $(function() {
     if (e.keyCode === 32 || e.keyCode === 13) {
       player.clickCookie();
     }
+  });
+
+  $('.item').click(function (e) {
+    var id = e.target.id;
+    id.match(/bakery-(.+)/);
+    var bakeryName = RegExp.$1;
+    player.buy(bakeryName, 100);
   });
 
   var prevTime = new Date().getTime();
