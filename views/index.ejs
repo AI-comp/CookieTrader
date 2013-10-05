@@ -22,10 +22,6 @@
     socket.on('message', function(from, msg) {
       alert('Received.');
     });
-
-    socket.on('purchase', function(from,msg) {
-      alert('Purchased ' + msg);
-    });
   
     $(function() {
       $('p').click(function() {
@@ -37,10 +33,33 @@
       alert($("#text").val());
       socket.emit("message", $("#text").val());
     }
-
-    function purchase(itemName) {
-      socket.emit("purchase", {item: itemName, cookie: 1000});
+    
+    // キーボード入力時に実行されるイベント
+    document.onkeydown = function(e) {
+      var shift, ctrl;
+      
+      // Mozilla(Firefox, NN) and Opera
+      if(e != null) {
+        keycode = e.which;
+        ctrl  = typeof e.modifiers == 'undefined' ? e.ctrlKey  : e.modifiers & Event.CONTROL_MASK;
+        shift = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
+        e.preventDefault();
+        e.stopPropagation();
+      // Internet Explorer
+      } else {
+        keycode = event.keycode;
+        ctrl = event.etrlKey;
+        shift = event.shiftKey;
+        e.returnValue = false;
+        e.cancelBubble = true;
+      }
+      
+      var keychar = String.fromCharCode(keycode).toLowerCase();
+      if(keychar == 'a') {
+        alert('OK');
+      }
     }
+    
     </script>
   </head>
   <body>
@@ -49,27 +68,16 @@
     <p>おばけー（クリックしよう！）</p>
     <input type="text" id="text" value="" size="20">
     <input type="button" onclick="check1();" value="Send">
-
-    <input type="button" onclick="purchase('Cursor');" value="Buy Cursor">
-    <input type="button" onclick="purchase('Grandma');" value="Buy Grandma">
-    <input type="button" onclick="purchase('Farm');" value="Buy Farm">
-    <input type="button" onclick="purchase('Factory');" value="Buy Factory">
-    <input type="button" onclick="purchase('Mine');" value="Buy Mine">
-    <input type="button" onclick="purchase('Shipment');" value="Buy Shipment">
-    <input type="button" onclick="purchase('AlchemyLab');" value="Buy AlchemyLab">
-    <input type="button" onclick="purchase('Portal');" value="Buy Portal">
-    <input type="button" onclick="purchase('TimeMachine');" value="Buy TimeMachine">
-    <input type="button" onclick="purchase('AntimatterCondenser');" value="Buy AntimatterCondenser">
     
     <script>
       // アルファベットをランダムに10個表示
       var message = "";
       var alphabet = "qwertyuiopasdfghjklzxcvbnm";
-      var size = alphabet.length
       for(var i = 0; i < 10; i++) {
-        message += alphabet.charAt((Math.random() * size) % size);
+        message += alphabet.charAt((Math.random()*26)%26);
       }
       document.write(message);
+
     </script>
     
   </body>
