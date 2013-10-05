@@ -13,6 +13,7 @@ app.configure(() ->
   app.use(express.static(__dirname + '/public'))
 )
 
+controller.start(app)
 server = http.createServer(app)
 socket = ws.attach(server)
 
