@@ -22,9 +22,7 @@
 
     function check1() {
       alert($("#text").val());
-      socket.emit(JSON.stringify({
-      text: $("#text").val()
-    }));
+      socket.emit("message", $("#text").val());
     }
     </script>
   </head>
