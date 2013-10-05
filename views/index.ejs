@@ -25,10 +25,10 @@
           <div class="item">C</div>
           <div class="item">D</div>
         </div>
-        <td class="cps">1,000 Cookies<br>100 CpS
-        <td class="cps">1,000 Cookies<br>100 CpS
-        <td class="cps">1,000 Cookies<br>100 CpS
-        <td class="cps">1,000 Cookies<br>100 CpS
+        <td class="cps"><span id="my-total-cookie" class="total-cookie">1,000</span> Cookies<br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> Cookies<br>100 CpS
       <tr><td>Cursor<br> 23 Cookie<br>Total 4
         <td><div class="cps">3 x 1 CpS</div>
           <div class="upgrades-mini">
@@ -72,6 +72,8 @@
 <script>
 $(function() {
 
+  var player = new Player(0, 10);
+
   // WebSocketサーバに接続
   var socket = io.connect('http://localhost:5000/');
 
@@ -89,8 +91,28 @@ $(function() {
   });
 
   $(document).keydown(function (e) {
-    console.log(e);
+    if (e.keyCode === 32 || e.keyCode === 13) {
+      player.clickCookie();
+    }
   });
+
+  var pretty = function (val) {
+    return '' + Math.floor(val);
+  };
+
+  var FPS = 10;
+
+  var prevTime = new Date().getTime();
+  var loop = function() {
+    var curTime = new Date().getTime();
+    player.bake((curTime - prevTime) / 1000);
+    prevTime = curTime;
+
+    $('#my-total-cookie').text(pretty(player.totalCookie));
+
+    setTimeout(loop, 1000 / FPS);
+  };
+  loop();
 
 });
 </script>
