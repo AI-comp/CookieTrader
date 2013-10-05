@@ -72,7 +72,16 @@
 <script>
 $(function() {
 
+  var pretty = function (val) {
+    return '' + Math.floor(val);
+  };
+
+  var FPS = 10;
+
   var player = new Player(0, 10);
+  player.hook('totalCookie', function (v) {
+    $('#my-total-cookie').text(pretty(player.totalCookie));
+  });
 
   // WebSocketサーバに接続
   var socket = io.connect('http://localhost:5000/');
@@ -96,20 +105,13 @@ $(function() {
     }
   });
 
-  var pretty = function (val) {
-    return '' + Math.floor(val);
-  };
-
-  var FPS = 10;
-
   var prevTime = new Date().getTime();
   var loop = function() {
     var curTime = new Date().getTime();
+
     player.bake((curTime - prevTime) / 1000);
+
     prevTime = curTime;
-
-    $('#my-total-cookie').text(pretty(player.totalCookie));
-
     setTimeout(loop, 1000 / FPS);
   };
   loop();
