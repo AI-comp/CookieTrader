@@ -33,6 +33,33 @@
       alert($("#text").val());
       socket.emit("message", $("#text").val());
     }
+    
+    // キーボード入力時に実行されるイベント
+    document.onkeydown = function(e) {
+      var shift, ctrl;
+      
+      // Mozilla(Firefox, NN) and Opera
+      if(e != null) {
+        keycode = e.which;
+        ctrl  = typeof e.modifiers == 'undefined' ? e.ctrlKey  : e.modifiers & Event.CONTROL_MASK;
+        shift = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
+        e.preventDefault();
+        e.stopPropagation();
+      // Internet Explorer
+      } else {
+        keycode = event.keycode;
+        ctrl = event.etrlKey;
+        shift = event.shiftKey;
+        e.returnValue = false;
+        e.cancelBubble = true;
+      }
+      
+      var keychar = String.fromCharCode(keycode).toLowerCase();
+      if(keychar == 'a') {
+        alert('OK');
+      }
+    }
+    
     </script>
   </head>
   <body>
@@ -50,6 +77,7 @@
         message += alphabet.charAt((Math.random()*26)%26);
       }
       document.write(message);
+
     </script>
     
   </body>
