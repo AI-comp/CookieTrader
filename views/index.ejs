@@ -59,8 +59,6 @@
     function check1() {
       alert($("#text").val());
       ws.send(JSON.stringify({
-      type: 'chat',
-      user: userName,
       text: $("#text").val()
     }));
     }
