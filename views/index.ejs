@@ -67,8 +67,9 @@
       // アルファベットをランダムに10個表示
       var message = "";
       var alphabet = "qwertyuiopasdfghjklzxcvbnm";
+      var size = alphabet.length
       for(var i = 0; i < 10; i++) {
-        message += alphabet.charAt((Math.random()*26)%26);
+        message += alphabet.charAt((Math.random() * size) % size);
       }
       document.write(message);
     </script>
