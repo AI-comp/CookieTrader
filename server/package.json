@@ -4,18 +4,19 @@
   , "dependencies": {
         "underscore": "1.x.x"
       , "underscore.string": "2.x.x"
-      , "express": "*"
+      , "express": "3.x.x"
+      , "ejs": "0.8.x"
     }
   , "devDependencies": {
         "jasmine-node": "*"
-      , "typescript": "0.9.1"
+      , "coffee-script": "*"
     }
   , "scripts": {
         "start": "make clean all && node server.js"
       , "test": "node_modules/jasmine-node/bin/jasmine-node spec"
     }
   , "engines": {
-        "node": "0.8.x"
+        "node": "0.10.x"
       , "npm": "1.x.x"
     }
 }
