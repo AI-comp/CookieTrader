@@ -6,8 +6,11 @@ start = (app, io) ->
 
   io.on('connection', (client) ->
     client.on('message', (message) ->
-      client.send(message)
-      client.broadcast(message)
+      d = new Date()
+      data = message + d.getHours() + ':' + d.getSeconds()
+      client.emit('message', data)
+      client.broadcast.emit('message', data)
+      console.log(data)
     )
   )
 
