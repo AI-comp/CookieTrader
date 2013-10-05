@@ -1,3 +1,6 @@
+Game = require('./model/game').Game
+game = new Game
+
 routes = (app) ->
   app.get('/', (req, res) ->
     res.render('index.ejs', {locals:{ message: "Hello, world!" }});
@@ -16,6 +19,24 @@ websocket = (io) ->
         bakeryName: obj.bakery
         price: Math.floor(Math.random()*1000)
       )
+      socket.emit('buy', res)
+    )
+
+    socket.on('buy', (obj) ->
+      bakery = obj.bakery
+      price = game.users['hoge'].buy(bakery, game.store, 999999999)
+      res =
+        if price?
+          {
+            status: 'ok'
+            bakeryName: obj.bakery
+            price: price
+          }
+        else
+          {
+            status: 'ng'
+            message: 'cookie is not enough'
+          }
       socket.emit('buy', res)
     )
   )

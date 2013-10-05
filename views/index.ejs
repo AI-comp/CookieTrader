@@ -33,7 +33,7 @@
         <td><div class="cps">3 x 1 CpS</div>
           <div class="upgrades-mini">
             <div id="bakery-Cursor" class="item">A</div>
-            <div id="bakery-Gramdma" class="item">A</div>
+            <div id="bakery-Grandma" class="item">A</div>
             <div id="bakery-Farm" class="item">A</div>
             <div id="bakery-Factory" class="item">A</div>
             <div id="bakery-Mine" class="item">A</div>
@@ -102,12 +102,16 @@ $(function() {
     console.log('Received : ' + msg);
   });
 
-  socket.on('buy', function (msg) {
-    var obj = JSON.parse(msg),
-        bakeryName = obj.bakeryName,
-        price = parseInt(obj.price, 10),
-        cps = 10;
-    player.buy(bakeryName, price, cps);
+  socket.on('buy', function (obj) {
+    var status = obj.status;
+    if (status === 'ok') {
+      var bakeryName = obj.bakeryName,
+          price = parseInt(obj.price, 10),
+          cps = 10;
+      player.buy(bakeryName, price, cps);
+    } else {
+      // TODO
+    }
   });
 
   $(document).keydown(function (e) {

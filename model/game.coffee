@@ -2,7 +2,7 @@ _ = require('underscore')
 
 class Game
   constructor: ->
-    @users = { 'hoge': 10, 'fuga': 20 }
+    @users = { hoge: new User }
     @store = new Store
 
   registerUser: (user) ->
@@ -17,12 +17,12 @@ class User
       @amounts[e] = 0
 
   buy: (item, store, totalCookie) ->
-    return null if cookieAmount < store.prices[item]
+    return null if totalCookie < store.prices[item]
 
     price = store.prices[item]
 
     store.amounts[item] -= 1
-    user.amounts[item] += 1
+    @amounts[item] += 1
 
     price
 
