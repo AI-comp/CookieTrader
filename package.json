@@ -6,6 +6,7 @@
       , "underscore.string": "2.x.x"
       , "express": "3.x.x"
       , "ejs": "0.8.x"
+      , "websocket": "1.x.x"
     }
   , "devDependencies": {
         "jasmine-node": "*"
