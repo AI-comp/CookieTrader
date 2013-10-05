@@ -66,8 +66,35 @@
   </head>
   <body>
     <h1><%= message %></h1>
-	<p>おばけー（クリックしよう！）</p>
-	<input type="text" id="text" value="" size="20">
-	<input type="button" onclick="check1();" value="Send">
+
+    <p>おばけー（クリックしよう！）</p>
+    <input type="text" id="text" value="" size="20">
+    <input type="button" onclick="check1();" value="Send">
+
+    <script src="socket.io/socket.io.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://localhost')
+      socket.on('connect', function(){
+        console.log('connect!')
+      });
+
+      socket.on('message', function(data){
+        var jData = JSON.parse(data);
+        if(jData.status) {
+          console.log('disconnected')
+        } else {
+          console.log('receive : ' + jData.msgBody)
+        }
+      });
+
+      socket.on('disconnect', function(){
+        console.log("disconnect from server");
+      });
+
+      socket.send(JSON.stringify({
+          msgBody: "hogefuga"
+      }));
+    </script>
+>>>>>>> Add websocket sample
   </body>
 </html>
