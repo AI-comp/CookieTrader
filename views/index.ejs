@@ -10,7 +10,7 @@
 	var socket = io.connect('http://localhost:5000/');
     
     // メッセージ受信イベントを処理
-	socket.on('message' {
+	socket.on('message', function(from, msg) {
 	  alert('Received.');
 	});
   
