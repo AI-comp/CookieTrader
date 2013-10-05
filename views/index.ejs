@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="socket.io/socket.io.js" type="text/javascript"></script>
-    <script src="../js/cookie.js" type="text/javascript"></script>
     <title>CookieTrader</title>
 
     <script>
@@ -23,37 +22,26 @@
     socket.on('message', function(from, msg) {
       alert('Received.');
     });
-
-    socket.on('purchase', function(from, msg) {
-      alert('Purchased' + msg);
-    });
   
     $(function() {
       $('p').click(function() {
         $(this).fadeOut('slow');
       });
     });
-
+    
     function check1() {
       alert($("#text").val());
       socket.emit("message", $("#text").val());
     }
-
-    function purchase(itemName) {
-      alert('Buy ' + itemName);
-      socket.emit('purchase', {item: itemName, cookie:'1000'});
-    }
-
     </script>
   </head>
   <body>
     <h1><%= message %></h1>
 
-    <h2 class='cookieAmount'>0</h2>
-
     <p>おばけー（クリックしよう！）</p>
     <input type="text" id="text" value="" size="20">
     <input type="button" onclick="check1();" value="Send">
+<<<<<<< HEAD
 
     <input type="button" onclick="purchase('Cursor');" value="Buy Cursor">
     <input type="button" onclick="purchase('Grandma');" value="Buy Grandma">
@@ -65,5 +53,18 @@
     <input type="button" onclick="purchase('Portal');" value="Buy Portal">
     <input type="button" onclick="purchase('TimeMachine');" value="Buy TimeMachine">
     <input type="button" onclick="purchase('AntimatterCondenser');" value="Buy AntimatterCondenser">
+=======
+    
+    <script>
+      // アルファベットをランダムに10個表示
+      var message = "";
+      var alphabet = "qwertyuiopasdfghjklzxcvbnm";
+      for(var i = 0; i < 10; i++) {
+        message += alphabet.charAt((Math.random()*26)%26);
+      }
+      document.write(message);
+    </script>
+    
+>>>>>>> 43c3e790c249428e49d1cdf6d2e4aed7764e2746
   </body>
 </html>
