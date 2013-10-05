@@ -49,8 +49,7 @@
   }
   $('#chat-history').prepend(item).hide().fadeIn(500);
 };
-    
-    
+  
     $(function() {
       $('p').click(function() {
       	$(this).fadeOut('slow');
@@ -59,6 +58,11 @@
 
     function check1() {
       alert($("#text").val());
+      ws.send(JSON.stringify({
+      type: 'chat',
+      user: userName,
+      text: $("#text").val()
+    }));
     }
     </script>
   </head>
