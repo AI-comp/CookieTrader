@@ -22,6 +22,10 @@
     socket.on('message', function(from, msg) {
       alert('Received.');
     });
+
+    socket.on('purchase', function(from, msg) {
+      alert('Purchased' + msg);
+    });
   
     $(function() {
       $('p').click(function() {
@@ -33,6 +37,12 @@
       alert($("#text").val());
       socket.emit("message", $("#text").val());
     }
+
+    function purchase(itemName) {
+      alert('Buy ' + itemName);
+      socket.emit('purchase', {item: itemName, cookie:'1000'});
+    }
+
     </script>
   </head>
   <body>
@@ -41,5 +51,9 @@
     <p>おばけー（クリックしよう！）</p>
     <input type="text" id="text" value="" size="20">
     <input type="button" onclick="check1();" value="Send">
+
+    <input type="button" onclick="purchase('Cursor');" value="Buy Cursor">
+    <input type="button" onclick="purchase('Grandma');" value="Buy Grandma">
+    <input type="button" onclick="purchase('Farm');" value="Buy Farm">
   </body>
 </html>
