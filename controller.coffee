@@ -1,17 +1,46 @@
-start = (app, io) ->
+Game = require('./model/game').Game
+game = new Game
+
+routes = (app) ->
   app.get('/', (req, res) ->
-    console.log("hello, world!");
     res.render('index.ejs', {locals:{ message: "Hello, world!" }});
   )
 
-  io.on('connection', (client) ->
-    client.on('message', (message) ->
-      d = new Date()
-      data = message + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-      client.emit('message', data)
-      client.broadcast.emit('message', data)
-      console.log(data)
+websocket = (io) ->
+  io.sockets.on('connection', (socket) ->
+    socket.on('message', (message) ->
+      socket.send(message)
+      socket.broadcast.emit(message)
+    )
+
+    socket.on('buy', (obj) ->
+      console.log(obj.bakery)
+      res = JSON.stringify(
+        bakeryName: obj.bakery
+        price: Math.floor(Math.random()*1000)
+      )
+      socket.emit('buy', res)
+    )
+
+    socket.on('buy', (obj) ->
+      bakery = obj.bakery
+      totalCookie = obj.totalCookie
+      price = game.users['hoge'].buy(bakery, game.store, totalCookie)
+      res =
+        if price?
+          {
+            status: 'ok'
+            bakeryName: obj.bakery
+            price: price
+          }
+        else
+          {
+            status: 'ng'
+            message: 'cookie is not enough'
+          }
+      socket.emit('buy', res)
     )
   )
 
-exports.start = start
+exports.routes = routes
+exports.websocket = websocket
