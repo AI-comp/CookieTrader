@@ -1,3 +1,5 @@
+exports = this
+
 # WebSocketサーバに接続
 socket = io.connect('http://localhost:5000/')
 
@@ -10,3 +12,5 @@ socket.on 'disconnect', ->
 # メッセージ受信イベントを処理
 socket.on 'message', (from, msg) ->
   alert('Received.')
+
+exports.socket = socket
