@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="socket.io/socket.io.js" type="text/javascript"></script>
+    <script src="../js/player.js" type="text/javascript"></script>
     <title>CookieTrader</title>
 
     <script>
@@ -64,11 +65,22 @@
   </head>
   <body>
     <h1><%= message %></h1>
+    <h2 class="totalCookie">0</h2>
 
     <p>おばけー（クリックしよう！）</p>
     <input type="text" id="text" value="" size="20">
     <input type="button" onclick="check1();" value="Send">
-    
+    <input type="button" class="Cursor" value="Buy Cursor">
+    <input type="button" class="Grandma" value="Buy Grandma">
+    <input type="button" class="Farm" value="Buy Farm">
+    <input type="button" class="Factory" value="Buy Factory">
+    <input type="button" class="Mine" value="Buy Mine">
+    <input type="button" class="Shipment" value="Buy Shipment">
+    <input type="button" class="AlchemyLab" value="Buy AlchemyLab">
+    <input type="button" class="Portal" value="Buy Portal">
+    <input type="button" class="TimeMachine" value="Buy TimeMachine">
+    <input type="button" class="AntimatterCondenser" value="Buy AntimatterCondenser">
+
     <script>
       // アルファベットをランダムに10個表示
       var message = "";
