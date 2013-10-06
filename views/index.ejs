@@ -125,7 +125,7 @@ $(function() {
     var id = e.target.id;
     id.match(/bakery-(.+)/);
     var bakeryName = RegExp.$1;
-    socket.emit('buy', { 'bakery': bakeryName })
+    socket.emit('buy', { 'bakery': bakeryName, 'totalCookie': player.totalCookie })
   });
 
   var prevTime = new Date().getTime();

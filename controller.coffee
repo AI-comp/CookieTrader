@@ -24,7 +24,8 @@ websocket = (io) ->
 
     socket.on('buy', (obj) ->
       bakery = obj.bakery
-      price = game.users['hoge'].buy(bakery, game.store, 999999999)
+      totalCookie = obj.totalCookie
+      price = game.users['hoge'].buy(bakery, game.store, totalCookie)
       res =
         if price?
           {
