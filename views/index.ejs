@@ -1,79 +1,143 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="socket.io/socket.io.js" type="text/javascript"></script>
-    <script src="../js/player.js" type="text/javascript"></script>
-    <script src="../js/connect.js" type="text/javascript"></script>
-    <title>CookieTrader</title>
+<!doctype html>
+<html role="application">
+<meta charset=utf-8>
+<title>Cookie Trader</title>
+<link rel="stylesheet" href="css/style.css">
+<body>
+<div id="wrapper">
+<div id="l-header">
+  <h1>Cookie Trader</h1>
+</div>
+<div id="l-container">
+  <div>
+    <table id="info">
+    <thead>
+      <tr><th>Global
+        <th>Me
+        <th>Player X
+        <th>Player Y
+        <th>Player Z
+    <tbody>
+      <tr><td><h2>Store</h2>
+        <div class="upgrades">
+          <div class="item">A</div>
+          <div class="item">B</div>
+          <div class="item">C</div>
+          <div class="item">D</div>
+        </div>
+        <td class="cps"><span id="my-total-cookie" class="total-cookie">1,000</span> Cookies<br><span id="my-cps" class="cps">100</span> CpS
+          <td class="cps"><span class="total-cookie">1,000</span> <span class="cps">Cookies</span><br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
+        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
+      <tr><td>Cursor<br> 23 Cookie<br>Total 4
+        <td><div class="cps">3 x 1 CpS</div>
+          <div class="upgrades-mini">
+            <div id="bakery-Cursor" class="item">A</div>
+            <div id="bakery-Grandma" class="item">A</div>
+            <div id="bakery-Farm" class="item">A</div>
+            <div id="bakery-Factory" class="item">A</div>
+            <div id="bakery-Mine" class="item">A</div>
+            <div id="bakery-Shipment" class="item">A</div>
+            <div id="bakery-AlchemyLab" class="item">A</div>
+            <div id="bakery-Portal" class="item">A</div>
+            <div id="bakery-TimeMachine" class="item">A</div>
+            <div id="bakery-AntimatterCondenser" class="item">A</div>
+          </div>
+        <td><div class="cps">1 x 1 CpS</div>
+        <td><div class="cps">0 x 1 CpS</div>
+        <td><div class="cps">0 x 1 CpS</div>
+      <tr><td>Granma<br> 100 Cookie<br>Total 0
+        <td><div class="cps">0 x 5 CpS</div>
+        <td><div class="cps">0 x 5 CpS</div>
+        <td><div class="cps">0 x 5 CpS</div>
+        <td><div class="cps">0 x 5 CpS</div>
+      <tr><td>Farm<br> 500 Cookie<br>Total 0
+        <td><div class="cps">0 x 40 CpS</div>
+        <td><div class="cps">0 x 40 CpS</div>
+        <td><div class="cps">0 x 40 CpS</div>
+        <td><div class="cps">0 x 40 CpS</div>
+    </table>
+  </div>
+  <div class=typing>
+    <div>INPUTTHISTEXT....</div>
+  </div>
+</div>
+<div id="l-footer">
+  This application inspires to <a href="http://orteil.dashnet.org/cookieclicker/">Cookie Clicker</a>
+</div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js" type="text/javascript"></script>
+<script src="/js/game.js" type="text/javascript"></script>
+<script>
+$(function() {
 
-    <script>
-    $(function() {
-      $('p').click(function() {
-        $(this).fadeOut('slow');
-      });
-    });
-    
-    function check1() {
-      socket.emit("message", $("#text").val());
+  var pretty = function (val) {
+    return '' + Math.floor(val);
+  };
+
+  var FPS = 10;
+
+  var player = new Player(0, 10);
+  player.hook('totalCookie', function (v) {
+    $('#my-total-cookie').text(pretty(player.totalCookie));
+  });
+  player.hook('currentCps', function (v) {
+    $('#my-cps').text(v);
+  });
+  player.totalCookie = 1000;
+  player.currentCps = 0;
+
+  // WebSocketサーバに接続
+  var socket = io.connect('http://localhost:5000/');
+
+  socket.on('connect', function(){
+    console.log('connect!')
+  });
+
+  socket.on('disconnect', function(){
+    console.log("disconnect from server");
+  });
+
+  // メッセージ受信イベントを処理
+  socket.on('message', function(msg) {
+    console.log('Received : ' + msg);
+  });
+
+  socket.on('buy', function (obj) {
+    var status = obj.status;
+    if (status === 'ok') {
+      var bakeryName = obj.bakeryName,
+          price = parseInt(obj.price, 10);
+      player.buy(bakeryName, price);
+    } else {
+      // TODO
     }
-    
-    // キーボード入力時に実行されるイベント
-    document.onkeydown = function(e) {
-      var shift, ctrl;
-      
-      // Mozilla(Firefox, NN) and Opera
-      if(e != null) {
-        keycode = e.which;
-        ctrl  = typeof e.modifiers == 'undefined' ? e.ctrlKey  : e.modifiers & Event.CONTROL_MASK;
-        shift = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
-        e.preventDefault();
-        e.stopPropagation();
-      // Internet Explorer
-      } else {
-        keycode = event.keycode;
-        ctrl = event.etrlKey;
-        shift = event.shiftKey;
-        e.returnValue = false;
-        e.cancelBubble = true;
-      }
-      
-      var keychar = String.fromCharCode(keycode).toLowerCase();
-      console.log("Key: " + keychar);
+  });
+
+  $(document).keydown(function (e) {
+    if (e.keyCode === 32 || e.keyCode === 13) {
+      player.clickCookie();
     }
-    
-    </script>
-  </head>
-  <body>
-    <h1><%= message %></h1>
-    <h2 class="totalCookie">0</h2>
+  });
 
-    <p>おばけー（クリックしよう！）</p>
-    <input type="text" id="text" value="" size="20">
-    <input type="button" onclick="check1();" value="Send">
-    <input type="button" class="Cursor" value="Buy Cursor">
-    <input type="button" class="Grandma" value="Buy Grandma">
-    <input type="button" class="Farm" value="Buy Farm">
-    <input type="button" class="Factory" value="Buy Factory">
-    <input type="button" class="Mine" value="Buy Mine">
-    <input type="button" class="Shipment" value="Buy Shipment">
-    <input type="button" class="AlchemyLab" value="Buy AlchemyLab">
-    <input type="button" class="Portal" value="Buy Portal">
-    <input type="button" class="TimeMachine" value="Buy TimeMachine">
-    <input type="button" class="AntimatterCondenser" value="Buy AntimatterCondenser">
+  $('.item').click(function (e) {
+    var id = e.target.id;
+    id.match(/bakery-(.+)/);
+    var bakeryName = RegExp.$1;
+    socket.emit('buy', { 'bakery': bakeryName, 'totalCookie': player.totalCookie })
+  });
 
-    <script>
-      // アルファベットをランダムに10個表示
-      var message = "";
-      var alphabet = "qwertyuiopasdfghjklzxcvbnm";
-      var size = alphabet.length;
-      for(var i = 0; i < 10; i++) {
-        message += alphabet.charAt((Math.random() * size) % size);
-      }
-      document.write(message);
+  var prevTime = new Date().getTime();
+  var loop = function() {
+    var curTime = new Date().getTime();
 
-    </script>
-    
-  </body>
-</html>
+    player.bake((curTime - prevTime) / 1000);
+
+    prevTime = curTime;
+    setTimeout(loop, 1000 / FPS);
+  };
+  loop();
+
+});
+</script>
