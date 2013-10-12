@@ -1,5 +1,5 @@
 rm public/js/*.js
-find . -type f -name "*.coffee" | while read FILE
+find public/js -type f -name "*.coffee" | while read FILE
 do
     coffee -c ${FILE}
 done

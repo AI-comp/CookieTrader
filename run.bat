@@ -1,3 +1,5 @@
-del public\js\*.js && FOR %%f IN (public\js\*.coffee) DO (
-	coffee -c %%f
-) && coffee app.coffee
+DEL public\js\*.js
+FOR %%f IN (public\js\*.coffee) DO (
+	call coffee -c %%f
+)
+call coffee app.coffee
