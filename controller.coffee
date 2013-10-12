@@ -14,15 +14,6 @@ websocket = (io) ->
     )
 
     socket.on('buy', (obj) ->
-      console.log(obj.bakery)
-      res = JSON.stringify(
-        bakeryName: obj.bakery
-        price: Math.floor(Math.random()*1000)
-      )
-      socket.emit('buy', res)
-    )
-
-    socket.on('buy', (obj) ->
       bakery = obj.bakery
       totalCookie = obj.totalCookie
       price = game.users['hoge'].buy(bakery, game.store, totalCookie)
