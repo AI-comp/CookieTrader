@@ -1,55 +1,52 @@
+/* RESET */
 html, body { margin: 0; padding: 0; width: 100%; height: 100%; }
-div { margin: 0; padding: 0; }
 
-#wrapper {
+/* Layouts */
+#wrapper { height: 100%; }
+.l-h-flex,
+.l-v-flex {
 	display: flex;
-	height: 100%;
-	flex-direction: column;
+}
+.l-h-flex { flex-direction: column; }
+.l-v-flex { flex-direction: row; }
 
-	background-color: red; /* DEBUG */
+.l-h-flex>:not(.l-flex-item),
+.l-v-flex>:not(.l-flex-item) {
+	overflow: hidden;
 }
-#l-header {
-	background-color: #fffff7;
-}
-#l-container {
-	background-color: #fff7ff;
+.l-h-flex>.l-flex-item,
+.l-v-flex>.l-flex-item {
 	flex: 1;
 }
-#l-footer {
-	padding: 10px;
-	background-color: #f7ffff;
-}
+/* specific layout */
+#action-block { width: 250px; position: relative; }
 
-h1 { margin: 0; padding: 20px; }
-h2 { margin: 10px; }
 
-.upgrades     >.item,
-.upgrades-mini>.item {
-	display: inline-block;
-	border: double 3px #aaa;
-	cursor: pointer;
-}
-.upgrades     >.item:hover,
-.upgrades-mini>.item:hover { background-color: #fda; }
+/* DEBUG COLOR */
+header { background-color: #efe; }
+footer { background-color: #fee; }
+#info-block { background-color: #ffe; }
+#type-block { background-color: #fef; }
+#action-block { background-color: #eff; }
 
-.upgrades     >.item { width: 32px; height: 32px; }
-.upgrades-mini>.item { width: 16px; height: 16px; }
+/* bakery module */
+.bakeries {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	overflow: auto;
+}
+.bakery-item {
+	height: 50px;
+}
+.bakery-item:nth-child(1) { background-color: hsl(0, 50%, 85%); }
+.bakery-item:nth-child(2) { background-color: hsl(20, 50%, 85%); }
+.bakery-item:nth-child(3) { background-color: hsl(40, 50%, 85%); }
+.bakery-item:nth-child(4) { background-color: hsl(60, 50%, 85%); }
+.bakery-item:nth-child(5) { background-color: hsl(80, 50%, 85%); }
+.bakery-item:nth-child(6) { background-color: hsl(100, 50%, 85%); }
+.bakery-item:nth-child(7) { background-color: hsl(120, 50%, 85%); }
+.bakery-item:nth-child(8) { background-color: hsl(140, 50%, 85%); }
+.bakery-item:nth-child(9) { background-color: hsl(160, 50%, 85%); }
+.bakery-item:nth-child(10) { background-color: hsl(180, 50%, 85%); }
 
-table#info {
-	border-collapse: collapse;
-	margin: 10px 30px;
-	width: 90%;
-}
-table#info th, table#info td {
-	border: solid 1px #ddd;
-	padding: 5px;
-}
-.cps { text-align: right; }
 
-.typing {
-	margin: 10px;
-	padding: 10px;
-	border: solid 2px white;
-	background-color: black;
-	color: white;
-}

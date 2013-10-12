@@ -4,68 +4,41 @@
 <title>Cookie Trader</title>
 <link rel="stylesheet" href="css/style.css">
 <body>
-<div id="wrapper">
-<div id="l-header">
+<div id="wrapper" class="l-h-flex">
+<header>
   <h1>Cookie Trader</h1>
-</div>
-<div id="l-container">
-  <div>
-    <table id="info">
-    <thead>
-      <tr><th>Global
-        <th>Me
-        <th>Player X
-        <th>Player Y
-        <th>Player Z
-    <tbody>
-      <tr><td><h2>Store</h2>
-        <div class="upgrades">
-          <div class="item">A</div>
-          <div class="item">B</div>
-          <div class="item">C</div>
-          <div class="item">D</div>
-        </div>
-        <td class="cps"><span id="my-total-cookie" class="total-cookie">1,000</span> Cookies<br><span id="my-cps" class="cps">100</span> CpS
-          <td class="cps"><span class="total-cookie">1,000</span> <span class="cps">Cookies</span><br>100 CpS
-        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
-        <td class="cps"><span class="total-cookie">1,000</span> > <span class="cps">Cookies</span><br>100 CpS
-      <tr><td>Cursor<br> 23 Cookie<br>Total 4
-        <td><div class="cps">3 x 1 CpS</div>
-          <div class="upgrades-mini">
-            <div id="bakery-Cursor" class="item">A</div>
-            <div id="bakery-Grandma" class="item">A</div>
-            <div id="bakery-Farm" class="item">A</div>
-            <div id="bakery-Factory" class="item">A</div>
-            <div id="bakery-Mine" class="item">A</div>
-            <div id="bakery-Shipment" class="item">A</div>
-            <div id="bakery-AlchemyLab" class="item">A</div>
-            <div id="bakery-Portal" class="item">A</div>
-            <div id="bakery-TimeMachine" class="item">A</div>
-            <div id="bakery-AntimatterCondenser" class="item">A</div>
-          </div>
-        <td><div class="cps">1 x 1 CpS</div>
-        <td><div class="cps">0 x 1 CpS</div>
-        <td><div class="cps">0 x 1 CpS</div>
-      <tr><td>Granma<br> 100 Cookie<br>Total 0
-        <td><div class="cps">0 x 5 CpS</div>
-        <td><div class="cps">0 x 5 CpS</div>
-        <td><div class="cps">0 x 5 CpS</div>
-        <td><div class="cps">0 x 5 CpS</div>
-      <tr><td>Farm<br> 500 Cookie<br>Total 0
-        <td><div class="cps">0 x 40 CpS</div>
-        <td><div class="cps">0 x 40 CpS</div>
-        <td><div class="cps">0 x 40 CpS</div>
-        <td><div class="cps">0 x 40 CpS</div>
-    </table>
+</header>
+<main class="l-flex-item l-v-flex">
+  <div class="l-flex-item l-h-flex">
+    <div id="info-block" class="l-flex-item">
+      You have <span id="my-total-cookie">0</span> cookies.<br>
+      You bake <span id="my-cps">0.0</span> cookies per seconds.
+    </div>
+    <div id="type-block">
+      <p>Typing here.
+    </div>
   </div>
-  <div class=typing>
-    <div>INPUTTHISTEXT....</div>
+  <div id="action-block">
+    <div>
+    </div>
+    <div class="bakeries">
+      <div id="bakery-Cursor" class="bakery-item">Pointer</div>
+      <div id="bakery-Grandma" class="bakery-item">Grandma</div>
+      <div id="bakery-Farm" class="bakery-item">Farm</div>
+      <div id="bakery-Factory" class="bakery-item">Factory</div>
+      <div id="bakery-Mine" class="bakery-item">Mine</div>
+      <div id="bakery-Shipment" class="bakery-item">Shipment</div>
+      <div id="bakery-AlchemyLab" class="bakery-item">AlchemyLab</div>
+      <div id="bakery-Portal" class="bakery-item">Portal</div>
+      <div id="bakery-TimeMachine" class="bakery-item">Time Machine</div>
+      <div id="bakery-AntimatterCondenser" class="bakery-item">Antimatter Condenser</div>
+    </div>
   </div>
-</div>
-<div id="l-footer">
+</main>
+<footer>
   This application inspires to <a href="http://orteil.dashnet.org/cookieclicker/">Cookie Clicker</a>
-</div>
-</div>
+</footer>
+</div><!-- /wrapper -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js" type="text/javascript"></script>
 <script src="/js/game.js" type="text/javascript"></script>
@@ -121,7 +94,7 @@ $(function() {
     }
   });
 
-  $('.item').click(function (e) {
+  $('.bakery-item').click(function (e) {
     var id = e.target.id;
     id.match(/bakery-(.+)/);
     var bakeryName = RegExp.$1;
