@@ -1,5 +1,5 @@
-Game = require('./model/game').Game
-game = new Game
+Room = require('./model/room')
+room = new Room
 
 routes = (app) ->
   app.get('/', (req, res) ->
@@ -16,7 +16,7 @@ websocket = (io) ->
     socket.on('buy', (obj) ->
       bakery = obj.bakery
       totalCookie = obj.totalCookie
-      price = game.users['hoge'].buy(bakery, game.store, totalCookie)
+      price = room.users['hoge'].buy(bakery, room.store, totalCookie)
       res =
         if price?
           {
