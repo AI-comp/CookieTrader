@@ -27,14 +27,16 @@ websocket = (io) ->
     socket.on('getInfo', (obj) ->
       player = obj.player
       room.updatePlayer(player)
-      socket.emit('getInfo', { allPlayers: room.allPlayers() })
+      socket.emit('getInfo', { allPlayers: room.allPlayers(), bakeries: room.globalBakeries() })
     )
 
     socket.on('buy', (obj) ->
+      console.log('########################################')
+      console.log(obj)
       player = obj.player
       bakery = obj.bakery
       # TODO: room.playerと同期する
-      price = Player.buy(player, bakery)
+      price = room.buyBakery(player, bakery)
       res =
         if price?
           {

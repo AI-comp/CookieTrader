@@ -13,6 +13,7 @@ class Room
     @_audienceCount = 0
     # FIXME: debug player hoge
     @_players = {}
+    @_globalBakeries = Bakery.newBakeries()
 
   enterAudience: ->
     console.log('audience++');
@@ -38,5 +39,17 @@ class Room
 
   updatePlayer: (player) ->
     @_players[player.id] = player
+
+  buyBakery: (player, bakery) ->
+    price = Bakery.calcPrice(@_globalBakeries, bakery)
+    if player.totalCookie >= price
+      player.totalCookie -= price
+      player.bakeries[bakery] += 1
+      @_globalBakeries[bakery] += 1
+      price
+    else
+      null
+
+  globalBakeries: -> @_globalBakeries
 
 module.exports = Room

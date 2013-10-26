@@ -26,6 +26,11 @@ $ ->
       typingElem.text(typingText)
   )()
 
+  renderInfo = (info) ->
+    bakeries = info.bakeries
+    for bakery, amount of bakeries
+      $('#bakery-'+bakery+' .bakery-price').text(Bakery.calcPrice(bakeries, bakery))
+
   startTimer = () ->
     curTime = new Date().getTime()
     Player.earn(player, (curTime - prevTime) / 1000)
@@ -57,7 +62,7 @@ $ ->
     player = obj.player
 
   socket.on 'getInfo', (obj) ->
-    console.log(obj.allPlayers)
+    renderInfo(obj)
 
   socket.on 'start', ->
     console.log('start!')
@@ -84,7 +89,7 @@ $ ->
   $('.bakery-item').click (e) ->
     return unless started
 
-    id = e.target.id
+    id = e.currentTarget.id
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
     socket.emit('buy', { player: player, bakery: bakeryName })
