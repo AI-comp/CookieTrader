@@ -79,4 +79,5 @@ $ ->
 
   $('#participate-button').click (e) ->
     socket.emit('participate', { 'name': $('#player-name').val() })
+    $('#cover').remove()
 
