@@ -1,4 +1,5 @@
 _ = _ || require('underscore')
+Bakery = Bakery || require('./bakery')
 
 ((define) ->
   define([], ->
