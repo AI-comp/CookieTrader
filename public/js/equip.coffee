@@ -1,7 +1,7 @@
 ((define) ->
   define([], ->
 
-    newEquips =
+    newEquips = ->
       'ReinforcedIndexFinger'                         : false
       'CarpalTunnelPreventionCream'                   : false
       'Ambidextrous'                                  : false

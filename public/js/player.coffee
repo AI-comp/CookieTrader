@@ -8,7 +8,7 @@
     newPlayer = (id, name) ->
       id: id
       name: name ? 'JoeJack'
-      bakeries: Bakery.newBakeries
+      bakeries: Bakery.newBakeries()
       totalCookie: 0
       equips: {}
 

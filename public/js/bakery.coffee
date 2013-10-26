@@ -1,7 +1,7 @@
 ((define) ->
   define([], ->
 
-    newBakeries =
+    newBakeries = ->
       'Cursor':              0
       'Grandma':             0
       'Farm':                0
