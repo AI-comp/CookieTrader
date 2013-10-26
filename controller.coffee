@@ -8,6 +8,9 @@ routes = (app) ->
 
 websocket = (io) ->
   io.sockets.on('connection', (socket) ->
+
+    room.enterAudience();
+
     socket.on('message', (message) ->
       socket.send(message)
       socket.broadcast.emit(message)
