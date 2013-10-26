@@ -67,35 +67,38 @@ footer { background-color: #fee; }
   font-size: 180%;
   height: 85px;
   cursor: pointer;
+  text-shadow:0px 0px 6px #000,0px 1px 1px #000;
+}
+.bakery-name {
 }
 .bakery-price {
   font-size: 75%;
   font-weight: bold;
   font-family: Tahoma,Arial,sans-serif;
-  /*font-family: sans-serif;*/
+  color: #6f6;
 }
-.bakery-item:nth-child(1) { background-color: hsl(0, 50%, 15%); }
-.bakery-item:nth-child(2) { background-color: hsl(20, 50%, 15%); }
-.bakery-item:nth-child(3) { background-color: hsl(40, 50%, 15%); }
-.bakery-item:nth-child(4) { background-color: hsl(60, 50%, 15%); }
-.bakery-item:nth-child(5) { background-color: hsl(80, 50%, 15%); }
-.bakery-item:nth-child(6) { background-color: hsl(100, 50%, 15%); }
-.bakery-item:nth-child(7) { background-color: hsl(120, 50%, 15%); }
-.bakery-item:nth-child(8) { background-color: hsl(140, 50%, 15%); }
-.bakery-item:nth-child(9) { background-color: hsl(160, 50%, 15%); }
-.bakery-item:nth-of-type(10) { background-color: hsl(180, 50%, 15%); }
 
+.bakery-item:nth-child(1) { background-color: hsl(0, 50%, 30%); }
+.bakery-item:nth-child(2) { background-color: hsl(20, 50%, 30%); }
+.bakery-item:nth-child(3) { background-color: hsl(40, 50%, 30%); }
+.bakery-item:nth-child(4) { background-color: hsl(60, 50%, 30%); }
+.bakery-item:nth-child(5) { background-color: hsl(80, 50%, 30%); }
+.bakery-item:nth-child(6) { background-color: hsl(100, 50%, 30%); }
+.bakery-item:nth-child(7) { background-color: hsl(120, 50%, 30%); }
+.bakery-item:nth-child(8) { background-color: hsl(140, 50%, 30%); }
+.bakery-item:nth-child(9) { background-color: hsl(160, 50%, 30%); }
+.bakery-item:nth-of-type(10) { background-color: hsl(180, 50%, 30%); }
 
-.bakery-item:nth-child(1):hover { background-color: hsl(0,50%,30%); }
-.bakery-item:nth-child(2):hover { background-color: hsl(20,50%,30%); }
-.bakery-item:nth-child(3):hover { background-color: hsl(40,50%,30%); }
-.bakery-item:nth-child(4):hover { background-color: hsl(60,50%,30%); }
-.bakery-item:nth-child(5):hover { background-color: hsl(80,50%,30%); }
-.bakery-item:nth-child(6):hover { background-color: hsl(100,50%,30%); }
-.bakery-item:nth-child(7):hover { background-color: hsl(120,50%,30%); }
-.bakery-item:nth-child(8):hover { background-color: hsl(140,50%,30%); }
-.bakery-item:nth-child(9):hover { background-color: hsl(160,50%,30%); }
-.bakery-item:nth-child(10):hover { background-color: hsl(180,50%,30%); }
+.bakery-item:nth-child(1):hover { background-color: hsl(0, 50%, 50%); }
+.bakery-item:nth-child(2):hover { background-color: hsl(20, 50%, 50%); }
+.bakery-item:nth-child(3):hover { background-color: hsl(40, 50%, 50%); }
+.bakery-item:nth-child(4):hover { background-color: hsl(60, 50%, 50%); }
+.bakery-item:nth-child(5):hover { background-color: hsl(80, 50%, 50%); }
+.bakery-item:nth-child(6):hover { background-color: hsl(100, 50%, 50%); }
+.bakery-item:nth-child(7):hover { background-color: hsl(120, 50%, 50%); }
+.bakery-item:nth-child(8):hover { background-color: hsl(140, 50%, 50%); }
+.bakery-item:nth-child(9):hover { background-color: hsl(160, 50%, 50%); }
+.bakery-item:nth-child(10):hover { background-color: hsl(180, 50%, 50%); }
 
 #cover {
   position: absolute;

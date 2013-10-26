@@ -1,6 +1,10 @@
 $ ->
   pretty = (val) ->
-    '' + Math.floor(val)
+    val = Math.floor(val)
+    num = new String(val)
+    while(true)
+      break if num is (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2"))
+    num
 
   FPS = 10
   TYPING_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -29,7 +33,11 @@ $ ->
   renderInfo = (info) ->
     bakeries = info.bakeries
     for bakery, amount of bakeries
-      $('#bakery-'+bakery+' .bakery-price').text(Math.floor(Bakery.calcPrice(bakeries, bakery)))
+      $('#bakery-'+bakery+' .bakery-price').text(pretty(Bakery.calcPrice(bakeries, bakery)))
+      if Math.floor(Bakery.calcPrice(bakeries, bakery)) <= player.totalCookie
+        $('#bakery-'+bakery+' .bakery-price').css("color","#6f6")
+      else
+        $('#bakery-'+bakery+' .bakery-price').css("color","#f66")
 
   startTimer = () ->
     curTime = new Date().getTime()
