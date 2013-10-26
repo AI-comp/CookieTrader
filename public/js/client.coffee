@@ -14,7 +14,7 @@ $ ->
   textGen = ->
     kinds = TYPING_CHARACTERS.length
     typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
-    nextCode = 65 + TYPING_CHARACTERS.indexOf(typingText.charAt(0))
+    nextCode = typingText.charCodeAt(0)
 
   render = ( ->
     cookieElem = $('#my-total-cookie')
