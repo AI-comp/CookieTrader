@@ -14,7 +14,7 @@
 
     calcCPS = (bakeries, equips) ->
       _.reduce(bakeries, (r, amount, bakery) ->
-        r + Bakery.calcCPS(bakery, amount, equips)
+        r + Bakery.calcCPS(bakery, amount, bakeries, equips)
       , 0)
 
     calcCPC = (bakeries, equips) -> 1
