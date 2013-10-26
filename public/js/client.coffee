@@ -9,9 +9,13 @@ $ ->
   started = false
 
 
-  render = ->
-    $('#my-total-cookie').text(~~player.totalCookie)
-    $('#my-cps').text(Player.calcCPS(player.bakeries, player.equips))
+  render = ( ->
+    cookieElem = $('#my-total-cookie')
+    cpsElem = $('#my-cps')
+    ->
+      cookieElem.text(~~player.totalCookie)
+      cpsElem.text(Player.calcCPS(player.bakeries, player.equips))
+  )()
 
   startTimer = () ->
     curTime = new Date().getTime()
