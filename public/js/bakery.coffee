@@ -39,7 +39,7 @@
 
     computeCps = (base,add,mult,bonus) ->
       bonus = 0 if !bonus
-      ((base + add) * (Math.pow(2,pow) + bonus))
+      ((base + add) * (Math.pow(2,mult) + bonus))
 
     calcCPS = (bakery, amount, bakeries, equips) ->
       cps =
