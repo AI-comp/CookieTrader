@@ -65,6 +65,8 @@ $ ->
       player.totalCookie -= price
 
   $(document).keydown (e) ->
+    return unless started
+
     if (e.keyCode == nextCode)
       Player.earnByClick(player)
       typingText = typingText.substr(1)
@@ -72,6 +74,8 @@ $ ->
       render()
 
   $('.bakery-item').click (e) ->
+    return unless started
+
     id = e.target.id
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
