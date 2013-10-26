@@ -4,6 +4,9 @@ Player = require('../public/js/player')
 Bakery = require('../public/js/bakery')
 Equip = require('../public/js/equip')
 
+seedID = 1
+generateID = -> seedID++
+
 class Room
 
   constructor: ->
@@ -12,12 +15,15 @@ class Room
     @_players = { hoge: Player.newPlayer(1, 'hoge') }
 
   enterAudience: ->
+    console.log('audience++');
     @_audienceCount += 1
 
   leaveAudience: ->
+    console.log('audience--');
     @_audienceCount -= 1
 
   participatePlayer: (name) ->
+    console.log('player++');
     id = generateID
     player = Player.newPlayer(id, name)
     @_players[id] = player
