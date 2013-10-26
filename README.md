@@ -8,7 +8,7 @@ Welcom to Cookie Trader
 ```npm install```
 3. Install CoffeeScript  
 ```npm install -g coffee-script```
-4. Run run.bat / run.sh
+4. Run ```run.bat``` on Windows / ```npm start``` on non-Windows
 
 ## Requirements
 
