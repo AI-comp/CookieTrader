@@ -21,14 +21,20 @@ websocket = (io) ->
       player = room.participatePlayer(obj.name)
       socket.emit('participate', { player: player })
       if room.isReady
-        socket.emit('start', { 'foo': 42 })
+        socket.emit('start')
+    )
+
+    socket.on('getInfo', (obj) ->
+      player = obj.player
+      room.updatePlayer(player)
+      socket.emit('getInfo', { allPlayers: room.allPlayers(), bakeries: room.globalBakeries() })
     )
 
     socket.on('buy', (obj) ->
       player = obj.player
       bakery = obj.bakery
       # TODO: room.playerと同期する
-      price = Player.buy(player, bakery)
+      price = room.buyBakery(player, bakery)
       res =
         if price?
           {

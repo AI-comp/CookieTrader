@@ -163,16 +163,14 @@
 
     priceOf = (bakery) -> prices[bakery]
 
-    raisePrice = (bakery) -> prices[bakery] *= 1.1
-
-    reducePrice = (bakery) -> prices[bakery] /= 1.1
+    calcPrice = (bakeries, bakery) ->
+      prices[bakery] * Math.pow(1.1, bakeries[bakery])
 
     {
       newBakeries: newBakeries
       calcCPS: calcCPS
       priceOf: priceOf
-      raisePrice: raisePrice
-      reducePrice: reducePrice
+      calcPrice: calcPrice
     }
   )
 )(define ? if module? then (deps, factory) -> module.exports = factory() else (deps, factory) -> @['Bakery'] = factory())

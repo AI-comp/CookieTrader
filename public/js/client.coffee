@@ -26,6 +26,11 @@ $ ->
       typingElem.text(typingText)
   )()
 
+  renderInfo = (info) ->
+    bakeries = info.bakeries
+    for bakery, amount of bakeries
+      $('#bakery-'+bakery+' .bakery-price').text(Math.floor(Bakery.calcPrice(bakeries, bakery)))
+
   startTimer = () ->
     curTime = new Date().getTime()
     Player.earn(player, (curTime - prevTime) / 1000)
@@ -33,12 +38,16 @@ $ ->
     prevTime = curTime
     setTimeout(startTimer, 1000 / FPS)
 
+
   start = ->
     typingText = ''
     textGen() for i in [0...10]
     prevTime = new Date().getTime()
     startTimer()
     started = true
+    setInterval( ->
+      socket.emit('getInfo', { player: player })
+    , 1000)
 
   # WebSocketサーバに接続
   socket = io.connect('http://localhost:5000/')
@@ -49,10 +58,14 @@ $ ->
   socket.on 'disconnect', ->
     console.log("disconnect from server")
 
-  socket.on 'participate', (msg) ->
-    player = msg.player
+  socket.on 'participate', (obj) ->
+    player = obj.player
+
+  socket.on 'getInfo', (obj) ->
+    renderInfo(obj)
 
   socket.on 'start', ->
+    console.log('start!')
     start()
 
   socket.on 'buy', (obj) ->
@@ -65,6 +78,8 @@ $ ->
       player.totalCookie -= price
 
   $(document).keydown (e) ->
+    return unless started
+
     if (e.keyCode == nextCode)
       Player.earnByClick(player)
       typingText = typingText.substr(1)
@@ -72,11 +87,14 @@ $ ->
       render()
 
   $('.bakery-item').click (e) ->
-    id = e.target.id
+    return unless started
+
+    id = e.currentTarget.id
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
     socket.emit('buy', { player: player, bakery: bakeryName })
 
   $('#participate-button').click (e) ->
     socket.emit('participate', { 'name': $('#player-name').val() })
+    $('#cover').remove()
 
