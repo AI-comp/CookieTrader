@@ -31,8 +31,6 @@ websocket = (io) ->
     )
 
     socket.on('buy', (obj) ->
-      console.log('########################################')
-      console.log(obj)
       player = obj.player
       bakery = obj.bakery
       # TODO: room.playerと同期する
