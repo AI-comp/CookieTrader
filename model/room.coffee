@@ -12,7 +12,7 @@ class Room
   constructor: ->
     @_audienceCount = 0
     # FIXME: debug player hoge
-    @_players = { hoge: Player.newPlayer(1, 'hoge') }
+    @_players = {}
 
   enterAudience: ->
     console.log('audience++');
@@ -32,8 +32,11 @@ class Room
 
   isReady: -> _.size(@_players) == @_audienceCount
 
-  allPlayers: -> @_players
+  allPlayers: -> _.values(@_players)
 
   player: (name) -> @_players[name]
+
+  updatePlayer: (player) ->
+    @_players[player.id] = player
 
 module.exports = Room

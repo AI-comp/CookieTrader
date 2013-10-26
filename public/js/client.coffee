@@ -33,12 +33,16 @@ $ ->
     prevTime = curTime
     setTimeout(startTimer, 1000 / FPS)
 
+
   start = ->
     typingText = ''
     textGen() for i in [0...10]
     prevTime = new Date().getTime()
     startTimer()
     started = true
+    setInterval( ->
+      socket.emit('getInfo', { player: player })
+    , 1000)
 
   # WebSocketサーバに接続
   socket = io.connect('http://localhost:5000/')
@@ -49,10 +53,14 @@ $ ->
   socket.on 'disconnect', ->
     console.log("disconnect from server")
 
-  socket.on 'participate', (msg) ->
-    player = msg.player
+  socket.on 'participate', (obj) ->
+    player = obj.player
+
+  socket.on 'getInfo', (obj) ->
+    console.log(obj.allPlayers)
 
   socket.on 'start', ->
+    console.log('start!')
     start()
 
   socket.on 'buy', (obj) ->
