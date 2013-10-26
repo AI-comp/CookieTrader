@@ -12,8 +12,8 @@ $ ->
   nextCode = null
 
   textGen = ->
+    kinds = TYPING_CHARACTERS.length
     for i in [0...10]
-      kinds = TYPING_CHARACTERS.length
       typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
 
   render = ( ->
@@ -37,7 +37,6 @@ $ ->
     render()
     prevTime = curTime
     setTimeout(startTimer, 1000 / FPS)
-
 
   start = ->
     typingText = ''
