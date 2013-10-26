@@ -23,8 +23,12 @@
 
     buy = (player, bakery) ->
       if canBuy(player, bakery)
-        player.totalCookie -= Bakery.priceOf(bakery)
+        price = Bakery.priceOf(bakery)
+        player.totalCookie -= price
         player.bakeries[bakery] += 1
+        price
+      else
+        null
 
     sell = (player, bakery) ->
       if player.bakeries[bakery] > 0

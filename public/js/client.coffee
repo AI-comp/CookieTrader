@@ -4,20 +4,22 @@ $ ->
 
   FPS = 10
 
-  player = Player.newPlayer()
-
-
+  player = null
   prevTime = null
+  started = false
+
+
+  render = ->
+    $('#my-total-cookie').text(~~player.totalCookie)
+    $('#my-cps').text(Player.calcCPS(player.bakeries, player.equips))
+
   startTimer = () ->
     curTime = new Date().getTime()
-
     Player.earn(player, (curTime - prevTime) / 1000)
-
+    render()
     prevTime = curTime
     setTimeout(startTimer, 1000 / FPS)
 
-
-  started = false
   start = ->
     prevTime = new Date().getTime()
     startTimer()
@@ -33,29 +35,31 @@ $ ->
   socket.on 'disconnect', ->
     console.log("disconnect from server")
 
+  socket.on 'participate', (msg) ->
+    player = msg.player
+
   socket.on 'start', ->
     start()
-
-  # メッセージ受信イベントを処理
-  socket.on 'message', (msg) ->
-    console.log('Received : ' + msg)
 
   socket.on 'buy', (obj) ->
     status = obj.status
     if status == 'ok'
       bakeryName = obj.bakeryName
-      price = parseInt(obj.price, 10)
-      player.buy(bakeryName, price)
+      bakery = obj.bakery
+      price = obj.price
+      player.bakeries[bakery] += 1
+      player.totalCookie -= price
 
   $(document).keydown (e) ->
     if (e.keyCode == 32 || e.keyCode == 13)
-      player.clickCookie()
+      Player.earnByClick(player)
+      render()
 
   $('.bakery-item').click (e) ->
     id = e.target.id
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
-    socket.emit('buy', { 'bakery': bakeryName, 'totalCookie': player.totalCookie })
+    socket.emit('buy', { player: player, bakery: bakeryName })
 
   $('#participate-button').click (e) ->
     socket.emit('participate', { 'name': $('#player-name').val() })
