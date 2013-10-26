@@ -12,9 +12,9 @@ $ ->
   nextCode = null
 
   textGen = ->
-    kinds = TYPING_CHARACTERS.length
-    typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
-    nextCode = typingText.charCodeAt(0)
+    for i in [0...10]
+      kinds = TYPING_CHARACTERS.length
+      typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
 
   render = ( ->
     cookieElem = $('#my-total-cookie')
@@ -35,7 +35,8 @@ $ ->
 
   start = ->
     typingText = ''
-    textGen() for i in [0...10]
+    textGen()
+    nextCode = typingText.charCodeAt(0)
     prevTime = new Date().getTime()
     startTimer()
     started = true
@@ -68,7 +69,8 @@ $ ->
     if (e.keyCode == nextCode)
       Player.earnByClick(player)
       typingText = typingText.substr(1)
-      textGen()
+      textGen() if typingText is ''
+      nextCode = typingText.charCodeAt(0)
       render()
 
   $('.bakery-item').click (e) ->
