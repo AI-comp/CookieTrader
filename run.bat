@@ -1,5 +1,7 @@
+DEL *.js
+DEL model\*.js
 DEL public\js\*.js
-FOR %%f IN (public\js\*.coffee) DO (
+FOR /r %%f IN (*.coffee) DO (
 	call coffee -c %%f
 )
-call coffee app.coffee
+call node app.js
