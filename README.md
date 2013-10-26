@@ -5,7 +5,8 @@ Welcom to Cookie Trader
 ## How to prepare develop environment
 1. Install node.js (http://nodejs.org/)
 2. Install CoffeeScript
-```npm install -g coffee```
+
+```npm install -g coffee-script```
 
 ## Environment
 
