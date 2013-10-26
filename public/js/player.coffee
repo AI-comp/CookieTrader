@@ -19,7 +19,7 @@
 
     calcCPC = (bakeries, equips) -> 1
 
-    canBuy = (player, bakery) -> player.totalCookie >= price
+    canBuy = (player, bakery) -> player.totalCookie >= Bakery.priceOf(bakery)
 
     buy = (player, bakery) ->
       if canBuy(player, bakery)
