@@ -29,7 +29,7 @@ $ ->
   renderInfo = (info) ->
     bakeries = info.bakeries
     for bakery, amount of bakeries
-      $('#bakery-'+bakery+' .bakery-price').text(Bakery.calcPrice(bakeries, bakery))
+      $('#bakery-'+bakery+' .bakery-price').text(Math.floor(Bakery.calcPrice(bakeries, bakery)))
 
   startTimer = () ->
     curTime = new Date().getTime()
