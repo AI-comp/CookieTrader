@@ -1,20 +1,10 @@
-exports = this
-
 $ ->
   pretty = (val) ->
     '' + Math.floor(val)
 
   FPS = 10
 
-  player = new Player(0, 10)
-  player.totalCookie = 1000
-  player.currentCps = 0
-
-  player.hook 'totalCookie', (v) ->
-    $('#my-total-cookie').text(pretty(player.totalCookie))
-
-  player.hook 'currentCps', (v) ->
-    $('#my-cps').text(v)
+  player = Player.newPlayer()
 
   # WebSocketサーバに接続
   socket = io.connect('http://localhost:5000/')
@@ -50,7 +40,7 @@ $ ->
   startTimer = () ->
     curTime = new Date().getTime()
 
-    player.bake((curTime - prevTime) / 1000)
+    Player.earn(player, (curTime - prevTime) / 1000)
 
     prevTime = curTime
     setTimeout(startTimer, 1000 / FPS)

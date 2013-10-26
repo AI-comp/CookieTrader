@@ -1,8 +1,9 @@
-_ = _ || require('underscore')
-Bakery = Bakery || require('./bakery')
-
 ((define) ->
   define([], ->
+
+    if module?
+      @['_'] =  require('underscore')
+      @['Bakery'] =  require('./bakery')
 
     newPlayer = (id, name) ->
       id: id
