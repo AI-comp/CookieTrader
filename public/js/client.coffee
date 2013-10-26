@@ -6,6 +6,24 @@ $ ->
 
   player = Player.newPlayer()
 
+
+  prevTime = null
+  startTimer = () ->
+    curTime = new Date().getTime()
+
+    Player.earn(player, (curTime - prevTime) / 1000)
+
+    prevTime = curTime
+    setTimeout(startTimer, 1000 / FPS)
+
+
+  started = false
+  start = ->
+    prevTime = new Date().getTime()
+    startTimer()
+    started = true
+
+
   # WebSocketサーバに接続
   socket = io.connect('http://localhost:5000/')
 
@@ -14,6 +32,9 @@ $ ->
 
   socket.on 'disconnect', ->
     console.log("disconnect from server")
+
+  socket.on 'start', ->
+    start()
 
   # メッセージ受信イベントを処理
   socket.on 'message', (msg) ->
@@ -36,12 +57,6 @@ $ ->
     bakeryName = RegExp.$1
     socket.emit('buy', { 'bakery': bakeryName, 'totalCookie': player.totalCookie })
 
-  prevTime = new Date().getTime()
-  startTimer = () ->
-    curTime = new Date().getTime()
+  $('#participate-button').click (e) ->
+    socket.emit('participate', { 'name': $('#player-name').val() })
 
-    Player.earn(player, (curTime - prevTime) / 1000)
-
-    prevTime = curTime
-    setTimeout(startTimer, 1000 / FPS)
-  startTimer()

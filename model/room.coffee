@@ -4,6 +4,9 @@ Player = require('../public/js/player')
 Bakery = require('../public/js/bakery')
 Equip = require('../public/js/equip')
 
+seedID = 1
+generateID = -> seedID++
+
 class Room
 
   constructor: ->

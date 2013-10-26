@@ -16,6 +16,12 @@ websocket = (io) ->
       socket.broadcast.emit(message)
     )
 
+    socket.on('participate', (obj) ->
+      room.participatePlayer(obj.name)
+      if room.isReady
+        socket.emit('start', { 'foo': 42 })
+    )
+
     socket.on('buy', (obj) ->
       bakery = obj.bakery
       totalCookie = obj.totalCookie
