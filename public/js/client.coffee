@@ -3,18 +3,27 @@ $ ->
     '' + Math.floor(val)
 
   FPS = 10
+  TYPING_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   player = null
   prevTime = null
   started = false
+  typingText = null
+  nextCode = null
 
+  textGen = ->
+    kinds = TYPING_CHARACTERS.length
+    typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
+    nextCode = typingText.charCodeAt(0)
 
   render = ( ->
     cookieElem = $('#my-total-cookie')
     cpsElem = $('#my-cps')
+    typingElem = $('#typing-text')
     ->
       cookieElem.text(~~player.totalCookie)
       cpsElem.text(Player.calcCPS(player.bakeries, player.equips))
+      typingElem.text(typingText)
   )()
 
   startTimer = () ->
@@ -25,10 +34,11 @@ $ ->
     setTimeout(startTimer, 1000 / FPS)
 
   start = ->
+    typingText = ''
+    textGen() for i in [0...10]
     prevTime = new Date().getTime()
     startTimer()
     started = true
-
 
   # WebSocketサーバに接続
   socket = io.connect('http://localhost:5000/')
@@ -55,8 +65,10 @@ $ ->
       player.totalCookie -= price
 
   $(document).keydown (e) ->
-    if (e.keyCode == 32 || e.keyCode == 13)
+    if (e.keyCode == nextCode)
       Player.earnByClick(player)
+      typingText = typingText.substr(1)
+      textGen()
       render()
 
   $('.bakery-item').click (e) ->
