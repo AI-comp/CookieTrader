@@ -1,2 +1,4 @@
 node_modules
-*.js
+/*.js
+model/*.js
+public/js/*.js
