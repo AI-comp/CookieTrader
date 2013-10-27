@@ -1,30 +1,30 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'owner', 'ls', 'CookieTrader' ]
 2 info using npm@1.2.16
 3 info using node@v0.10.2
 4 verbose node symlink /usr/local/bin/node
-5 verbose read json /Users/Wand/Documents/AI-COMP/CookieTrader/package.json
-6 verbose run-script [ 'prestart', 'start', 'poststart' ]
-7 info prestart CookieTrader@0.1.0
-8 info start CookieTrader@0.1.0
-9 verbose unsafe-perm in lifecycle true
-10 silly exec sh "-c" "make clean all && node app.js"
-11 silly sh,-c,make clean all && node app.js,/Users/Wand/Documents/AI-COMP/CookieTrader spawning
-12 info CookieTrader@0.1.0 Failed to exec start script
-13 error CookieTrader@0.1.0 start: `make clean all && node app.js`
-13 error `sh "-c" "make clean all && node app.js"` failed with 2
-14 error Failed at the CookieTrader@0.1.0 start script.
-14 error This is most likely a problem with the CookieTrader package,
-14 error not with npm itself.
-14 error Tell the author that this fails on your system:
-14 error     make clean all && node app.js
-14 error You can get their info via:
-14 error     npm owner ls CookieTrader
-14 error There is likely additional logging output above.
-15 error System Darwin 13.0.0
-16 error command "node" "/usr/local/bin/npm" "start"
-17 error cwd /Users/Wand/Documents/AI-COMP/CookieTrader
-18 error node -v v0.10.2
-19 error npm -v 1.2.16
-20 error code ELIFECYCLE
-21 verbose exit [ 1, true ]
+5 verbose url raw CookieTrader
+6 verbose url resolving [ 'https://registry.npmjs.org/', './CookieTrader' ]
+7 verbose url resolved https://registry.npmjs.org/CookieTrader
+8 info trying registry request attempt 1 at 07:18:08
+9 http GET https://registry.npmjs.org/CookieTrader
+10 http 404 https://registry.npmjs.org/CookieTrader
+11 silly registry.get cb [ 404,
+11 silly registry.get   { server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+11 silly registry.get     date: 'Sun, 27 Oct 2013 22:18:12 GMT',
+11 silly registry.get     'content-type': 'application/json',
+11 silly registry.get     'content-length': '52',
+11 silly registry.get     'cache-control': 'must-revalidate' } ]
+12 error owner ls Couldn't get owner data CookieTrader
+13 error 404 'CookieTrader' is not in the npm registry.
+13 error 404 You should bug the author to publish it
+13 error 404
+13 error 404 Note that you can also install from a
+13 error 404 tarball, folder, or http url, or git url.
+14 error System Darwin 13.0.0
+15 error command "node" "/usr/local/bin/npm" "owner" "ls" "CookieTrader"
+16 error cwd /Users/Wand/Documents/AI-COMP/CookieTrader
+17 error node -v v0.10.2
+18 error npm -v 1.2.16
+19 error code E404
+20 verbose exit [ 1, true ]
