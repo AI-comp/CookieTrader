@@ -92,8 +92,9 @@ footer { background-color: #fee; }
   height: 40px;
 }
 .bakery-item {
+  position: relative;
   color: #fff;
-  font-size: 180%;
+  font-size: 30px;
   height: 75px;
   cursor: pointer;
   text-shadow:0px 0px 6px #000,0px 1px 1px #000;
@@ -102,10 +103,19 @@ footer { background-color: #fee; }
 .bakery-name {
 }
 .bakery-price {
-  font-size: 75%;
+  font-size: 20px;
   font-weight: bold;
   font-family: Tahoma,Arial,sans-serif;
   color: #6f6;
+}
+.amount {
+  position: absolute;
+  right:12px;
+  bottom: 5px;
+  font-size:40px;
+  opacity:0.2;
+  color:#000;
+  text-shadow:0px 0px 8px #fff;
 }
 
 .bakery-item:nth-child(1) { background-color: hsl(0, 50%, 30%); }
@@ -133,8 +143,8 @@ footer { background-color: #fee; }
 /* sell */
 
 .column-title {
-	position: relative;
-	top: 0; bottom: 0; left: 0; right: 0;
+  position: relative;
+  top: 0; bottom: 0; left: 0; right: 0;
   background-color: #211;
   color: #fff;
   padding: 0 5px;
@@ -144,18 +154,27 @@ footer { background-color: #fee; }
 }
 
 .my-item {
+  position: relative;
   color: #fff;
   height: 75px;
   cursor: pointer;
-  text-shadow:0px 0px 6px #000,0px 1px 1px #000;
+  /*text-shadow:0px 0px 6px #000,0px 1px 1px #000;*/
   padding: 2px 5px;
 }
 
 .bakery-sell {
-  font-size:150%;
-  font-weight: bold;
-  font-family: Tahoma,Arial,sans-serif;
-  color: #f66;
+  font-family:Tahoma,Arial,sans-serif;
+  position: absolute;
+  display:inline-block;
+  border:1px solid #333;
+  background: rgba(240,240,240,0.1);
+  margin:2px 4px 2px 0px;
+  color:#333;
+  font-size:12px;
+  padding:4px 8px;
+  text-decoration:none;
+  text-shadow: 0;
+  visibility: hidden;
 }
 
 .my-item:nth-child(1) { background-color: hsl(0, 30%, 30%); }
@@ -169,16 +188,14 @@ footer { background-color: #fee; }
 .my-item:nth-child(9) { background-color: hsl(160, 30%, 30%); }
 .my-item:nth-of-type(10) { background-color: hsl(180, 30%, 30%); }
 
-.my-item:nth-child(1):hover { background-color: hsl(0, 30%, 50%); }
-.my-item:nth-child(2):hover { background-color: hsl(20, 30%, 50%); }
-.my-item:nth-child(3):hover { background-color: hsl(40, 30%, 50%); }
-.my-item:nth-child(4):hover { background-color: hsl(60, 30%, 50%); }
-.my-item:nth-child(5):hover { background-color: hsl(80, 30%, 50%); }
-.my-item:nth-child(6):hover { background-color: hsl(100, 30%, 50%); }
-.my-item:nth-child(7):hover { background-color: hsl(120, 30%, 50%); }
-.my-item:nth-child(8):hover { background-color: hsl(140, 30%, 50%); }
-.my-item:nth-child(9):hover { background-color: hsl(160, 30%, 50%); }
-.my-item:nth-child(10):hover { background-color: hsl(180, 30%, 50%); }
+.my-item:hover .bakery-sell{
+  border-color:#000;
+  background-color:#fff;
+  color:#000;
+}
+.my-item:active .bakery-sell{
+  background-color:#999;
+}
 
 #cover {
   position: absolute;

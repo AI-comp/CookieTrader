@@ -20,6 +20,7 @@ $ ->
     for i in [0...10]
       typingText += TYPING_CHARACTERS.charAt(Math.floor(Math.random() * kinds))
 
+  #client info
   render = ( ->
     cookieElem = $('#my-total-cookie')
     cpsElem = $('#my-cps')
@@ -30,11 +31,19 @@ $ ->
       cpsElem.text(pretty(cps))
       #cpsElem.text(pretty(cps)+'.'+(Math.floor(cps*10)%10))
       typingElem.text(typingText)
+      for bakery, amount of player.bakeries
+        $("#my-#{bakery} .amount").text(amount)
+        if amount >= 1
+          $('#my-'+bakery+' .bakery-sell').css("visibility", "visible")
+        else
+          $('#my-'+bakery+' .bakery-sell').css("visibility", "hidden")
   )()
 
+  #server info
   renderInfo = (info) ->
     bakeries = info.bakeries
     for bakery, amount of bakeries
+      $("#bakery-#{bakery} .amount").text(amount)
       $('#bakery-'+bakery+' .bakery-price').text(pretty(Bakery.calcPrice(bakeries, bakery)))
       if Math.floor(Bakery.calcPrice(bakeries, bakery)) <= player.totalCookie
         $('#bakery-'+bakery+' .bakery-price').css("color","#6f6")
@@ -112,6 +121,13 @@ $ ->
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
     socket.emit('buy', { player: player, bakery: bakeryName })
+
+  $('.my-item').click (e) ->
+    return unless started
+    id = e.currentTarget.id
+    id.match(/my-(.+)/)
+    bakeryName = RegExp.$1
+    socket.emit('sell', { player: player, bakery: bakeryName })
 
   $('#participate-button').click (e) ->
     socket.emit('participate', { 'name': $('#player-name').val() })

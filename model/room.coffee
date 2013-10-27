@@ -51,9 +51,9 @@ class Room
       null
 
   sellBakery: (player, bakery) ->
-    price = Bakery.calcPrice(@_globalBakeries, bakery)
+    price = Math.floor(Bakery.calcPrice(@_globalBakeries, bakery) / 2)
     if player.bakeries[bakery] >= 1
-      player.totalCookie += price / 2
+      player.totalCookie += price
       player.bakeries[bakery] -= 1
       @_globalBakeries[bakery] -= 1
       price
