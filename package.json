@@ -7,6 +7,7 @@
       , "express": "3.x.x"
       , "ejs": "0.8.x"
       , "socket.io": "0.9.x"
+      , "npm" : "1.x.x"
     }
   , "devDependencies": {
         "mocha": "*"
