@@ -12,71 +12,170 @@
       <main class="l-flex-item l-v-flex">
       <div class="l-flex-item l-h-flex">
         <div id="info-block" class="l-flex-item">
-        <img src="img/cookie-48.png">
-          You have <span id="my-total-cookie">0</span> cookies.<br>
-        <img src="img/cookie-48.png">
-          You bake <span id="my-cps">0.0</span> cookies per seconds.
+          <p>Elapsed Time: <span id="elapsed-time">0</span> seconds.</p>
+          <p><img src="img/cookie-48.png">
+          You have <span id="my-total-cookie">0</span> cookies.</p>
+          <p><img src="img/cookie-48.png">
+          You bake <span id="my-cps">0.0</span> cookies per seconds.</p>
+          <p><img src="img/cookie-48.png">
+          You bake <span id="my-cpc">10.0</span> cookies per types.</p>
+          <ul>
+            <li>1st: idhoge total cps</li>
+            <li>2nd: idfoo total cps</li>
+            <li>この辺にサーバーから送られてきた</li>
+            <li>全員のクッキー数とCPSを表示</li>
+          </ul>
         </div>
         <div id="type-block">
           <p>Typing: <span id="typing-text"></span>
         </div>
       </div>
       <div id="action-block">
-        <div>
+        <div id="bakery-column" class="column">
+          <div class="bakery-title">
+            <span>Global Store</span>
+          </div>
+          <div class="bakeries">
+            <div id="bakery-Cursor" class="bakery-item">
+              <div class="bakery-name">Pointer</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Grandma" class="bakery-item">
+              <div class="bakery-name">Grandma</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Farm" class="bakery-item">
+              <div class="bakery-name">Farm</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Factory" class="bakery-item">
+              <div class="bakery-name">Factory</div>
+              <img src="img/cookie-24.png">
+              <span class="bakery-price"></span>
+            </div>
+            <div id="bakery-Mine" class="bakery-item">
+              <div class="bakery-name">Mine</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Shipment" class="bakery-item">
+              <div class="bakery-name">Shipment</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-AlchemyLab" class="bakery-item">
+              <div class="bakery-name">AlchemyLab</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Portal" class="bakery-item">
+              <div class="bakery-name">Portal</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-TimeMachine" class="bakery-item">
+              <div class="bakery-name">Time Machine</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-AntimatterCondenser" class="bakery-item">
+              <div class="bakery-name">Antimatter Condenser</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="bakery-title">
-          <span>Store</span><br>
+        <div class="column">
+          <div class="column-title">
+            <span>Me</span>
+          </div>
+          <div class="bakeries">
+            <div id="my-Cursor" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Grandma" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Farm" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Factory" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Mine" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Shipment" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-AlchemyLab" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-Portal" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-TimeMachine" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+            <div id="my-AntimatterCondenser" class="my-item">
+              <div>
+                <span class="bakery-sell">sell</span>
+              </div>
+            </div>
+          </div> <!--bakeries-->
+        </div> <!--column-->
+        <div class="column">
+          <div class="column-title">
+            <span>Player1</span>
+          </div>
         </div>
-        <div class="bakeries">
-          <div id="bakery-Cursor" class="bakery-item">
-            <span class="bakery-name">Pointer</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
+        <div class="column">
+          <div class="column-title">
+            <span>Player2</span>
           </div>
-          <div id="bakery-Grandma" class="bakery-item">
-            <span class="bakery-name">Grandma</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-Farm" class="bakery-item">
-            <span class="bakery-name">Farm</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-Factory" class="bakery-item">
-            <span class="bakery-name">Factory</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-Mine" class="bakery-item">
-            <span class="bakery-name">Mine</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-Shipment" class="bakery-item">
-            <span class="bakery-name">Shipment</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-AlchemyLab" class="bakery-item">
-            <span class="bakery-name">AlchemyLab</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-Portal" class="bakery-item">
-            <span class="bakery-name">Portal</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-TimeMachine" class="bakery-item">
-            <span class="bakery-name">Time Machine</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
-          </div>
-          <div id="bakery-AntimatterCondenser" class="bakery-item">
-            <span class="bakery-name">Antimatter Condenser</span><br>
-            <img src="img/cookie-24.png">
-            <span class="bakery-price"></span>
+        </div>
+        <div class="column">
+          <div class="column-title">
+            <span>Player3</span>
           </div>
         </div>
       </div>

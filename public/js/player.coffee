@@ -15,9 +15,9 @@
     calcCPS = (bakeries, equips) ->
       _.reduce(bakeries, (r, amount, bakery) ->
         r + Bakery.calcCPS(bakery, amount, bakeries, equips)
-      , 0)
+      , 0) * 10
 
-    calcCPC = (bakeries, equips) -> 1
+    calcCPC = (bakeries, equips) -> 10
 
     sell = (player, bakery) ->
       if player.bakeries[bakery] > 0

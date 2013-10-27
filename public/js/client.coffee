@@ -25,8 +25,10 @@ $ ->
     cpsElem = $('#my-cps')
     typingElem = $('#typing-text')
     ->
-      cookieElem.text(~~player.totalCookie)
-      cpsElem.text(Player.calcCPS(player.bakeries, player.equips))
+      cps = Player.calcCPS(player.bakeries, player.equips)
+      cookieElem.text(pretty(player.totalCookie))
+      cpsElem.text(pretty(cps))
+      #cpsElem.text(pretty(cps)+'.'+(Math.floor(cps*10)%10))
       typingElem.text(typingText)
   )()
 
@@ -85,6 +87,15 @@ $ ->
       player.bakeries[bakery] += 1
       player.totalCookie -= price
 
+  socket.on 'sell', (obj) ->
+    status = obj.status
+    if status == 'ok'
+      bakeryName = obj.bakeryName
+      bakery = obj.bakery
+      price = obj.price
+      player.bakeries[bakery] -= 1
+      player.totalCookie += price / 2
+
   $(document).keydown (e) ->
     return unless started
 
@@ -97,7 +108,6 @@ $ ->
 
   $('.bakery-item').click (e) ->
     return unless started
-
     id = e.currentTarget.id
     id.match(/bakery-(.+)/)
     bakeryName = RegExp.$1
