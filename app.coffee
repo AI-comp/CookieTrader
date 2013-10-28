@@ -14,6 +14,13 @@ app.configure(() ->
 )
 
 server = http.createServer(app)
+
+io.listen(server).configure(
+  ->
+    io.set("transports", ["xhr-polling"])
+    io.set("polling duration", 10)
+)
+
 controller.routes(app)
 controller.websocket(io.listen(server))
 
