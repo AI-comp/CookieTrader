@@ -69,7 +69,7 @@ $ ->
     , 1000)
 
   # WebSocketサーバに接続
-  socket = io.connect('http://localhost:5000/')
+  socket = io.connect('http://cookie-trader.herokuapp.com/')
 
   socket.on 'connect', ->
     console.log('connect!')
