@@ -164,7 +164,7 @@
     priceOf = (bakery) -> prices[bakery]
 
     calcPrice = (bakeries, bakery) ->
-      prices[bakery] * Math.pow(1.1, bakeries[bakery])
+      prices[bakery] * Math.pow(1.15, bakeries[bakery])
 
     {
       newBakeries: newBakeries
