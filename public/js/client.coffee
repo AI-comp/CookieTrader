@@ -97,13 +97,14 @@ $ ->
       player.totalCookie -= price
 
   socket.on 'sell', (obj) ->
-    status = obj.status
-    if status == 'ok'
-      bakeryName = obj.bakeryName
-      bakery = obj.bakery
-      price = obj.price
-      player.bakeries[bakery] -= 1
-      player.totalCookie += price / 2
+    if player.bakeries[bakery] >= 1
+      status = obj.status
+      if status == 'ok'
+        bakeryName = obj.bakeryName
+        bakery = obj.bakery
+        price = obj.price
+        player.bakeries[bakery] -= 1
+        player.totalCookie += price / 2
 
   $(document).keydown (e) ->
     return unless started
