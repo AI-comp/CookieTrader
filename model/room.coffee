@@ -16,15 +16,15 @@ class Room
     @_globalBakeries = Bakery.newBakeries()
 
   enterAudience: ->
-    console.log('audience++');
+    console.log('audience++')
     @_audienceCount += 1
 
   leaveAudience: ->
-    console.log('audience--');
+    console.log('audience--')
     @_audienceCount -= 1
 
   participatePlayer: (name) ->
-    console.log('player++');
+    console.log('player++')
     id = generateID
     player = Player.newPlayer(id, name)
     @_players[id] = player
@@ -46,6 +46,16 @@ class Room
       player.totalCookie -= price
       player.bakeries[bakery] += 1
       @_globalBakeries[bakery] += 1
+      price
+    else
+      null
+
+  sellBakery: (player, bakery) ->
+    price = Math.floor(Bakery.calcPrice(@_globalBakeries, bakery) / 2)
+    if player.bakeries[bakery] >= 1
+      player.totalCookie += price
+      player.bakeries[bakery] -= 1
+      @_globalBakeries[bakery] -= 1
       price
     else
       null

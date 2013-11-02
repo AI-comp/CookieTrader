@@ -7,6 +7,8 @@
       , "express": "3.x.x"
       , "ejs": "0.8.x"
       , "socket.io": "0.9.x"
+      , "npm" : "1.x.x"
+      , "coffee-script" : "*"
     }
   , "devDependencies": {
         "mocha": "*"
@@ -16,7 +18,7 @@
     }
   , "scripts": {
         "start": "make clean all && node app.js"
-      , "test": "node_modules/.bin/mocha test"
+      , "test": "make clean all && node_modules/.bin/mocha test -t 100000"
     }
   , "engines": {
         "node": "0.10.x"
