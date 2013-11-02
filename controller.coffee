@@ -4,13 +4,13 @@ room = new Room
 
 routes = (app) ->
   app.get('/', (req, res) ->
-    res.render('index.ejs', {locals:{ message: "Hello, world!" }});
+    res.render('index.ejs', {locals:{ message: "Hello, world!" }})
   )
 
 websocket = (io) ->
   io.sockets.on('connection', (socket) ->
 
-    room.enterAudience();
+    room.enterAudience()
 
     socket.on('message', (message) ->
       socket.send(message)
@@ -48,6 +48,25 @@ websocket = (io) ->
             message: 'cookie is not enough'
           }
       socket.emit('buy', res)
+    )
+
+    socket.on('sell', (obj) ->
+      player = obj.player
+      bakery = obj.bakery
+      price = room.sellBakery(player, bakery)
+      res =
+        if price?
+          {
+            status: 'ok'
+            bakery: bakery
+            price: price
+          }
+        else
+          {
+            status: 'ng'
+            message: 'bakery is not enough'
+          }
+      socket.emit('sell', res)
     )
   )
 

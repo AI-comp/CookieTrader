@@ -1,84 +1,200 @@
 <!doctype html>
 <html role="application">
-<meta charset=utf-8>
-<title>Cookie Trader</title>
-<link rel="stylesheet" href="css/style.css">
-<body>
-<div id="wrapper" class="l-h-flex">
-<header>
-  <h1>Cookie Trader</h1>
-</header>
-<main class="l-flex-item l-v-flex">
-  <div class="l-flex-item l-h-flex">
-    <div id="info-block" class="l-flex-item">
-      You have <span id="my-total-cookie">0</span> cookies.<br>
-      You bake <span id="my-cps">0.0</span> cookies per seconds.
+  <meta charset=utf-8>
+  <title>Cookie Trader</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
+  <body>
+    <div id="wrapper" class="l-h-flex">
+      <header>
+      <h1>Cookie Trader</h1>
+      </header>
+      <main class="l-flex-item l-v-flex">
+      <div class="l-flex-item l-h-flex">
+        <div id="info-block" class="l-flex-item">
+          <p>Elapsed Time: <span id="elapsed-time">0</span> seconds.</p>
+          <p><img src="img/cookie-48.png">
+          You have <span id="my-total-cookie">0</span> cookies.</p>
+          <p><img src="img/cookie-48.png">
+          You bake <span id="my-cps">0.0</span> cookies per seconds.</p>
+          <p><img src="img/cookie-48.png">
+          You bake <span id="my-cpc">10.0</span> cookies per types.</p>
+          <ul>
+            <li>1st: id total cps</li>
+            <li>2nd: id total cps</li>
+            <li>(*Display cookie number and CpS of Multiplayer)</li>
+          </ul>
+        </div>
+        <div id="type-block">
+          <p>Typing: <span id="typing-text"></span>
+        </div>
+      </div>
+      <div id="action-block">
+        <div id="bakery-column" class="column">
+          <div class="bakery-title">
+            <span>Global Store</span>
+          </div>
+          <div class="bakeries">
+            <div id="bakery-Cursor" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Pointer</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Grandma" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Grandma</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Farm" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Farm</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Factory" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Factory</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Mine" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Mine</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Shipment" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Shipment</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-AlchemyLab" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">AlchemyLab</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-Portal" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Portal</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-TimeMachine" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Time Machine</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+            <div id="bakery-AntimatterCondenser" class="bakery-item">
+              <div class="amount">0</div>
+              <div class="bakery-name">Antimatter Condenser</div>
+              <div>
+                <img src="img/cookie-24.png">
+                <span class="bakery-price"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column-title">
+            <span>Me</span>
+          </div>
+          <div class="bakeries">
+            <div id="my-Cursor" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Grandma" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Farm" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Factory" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Mine" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Shipment" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-AlchemyLab" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-Portal" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-TimeMachine" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+            <div id="my-AntimatterCondenser" class="my-item">
+              <div class="amount">0</div>
+              <div class="bakery-sell">Sell 1</div>
+            </div>
+          </div> <!--bakeries-->
+        </div> <!--column-->
+        <div class="column">
+          <div class="column-title">
+            <span>Player1</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column-title">
+            <span>Player2</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column-title">
+            <span>Player3</span>
+          </div>
+        </div>
+      </div>
+      </main>
+      <footer>
+      This application inspires to <a href="http://orteil.dashnet.org/cookieclicker/">Cookie Clicker</a>
+      </footer>
+    </div><!-- /wrapper -->
+    <div id="cover">
+      <div id="initial-form">
+        <input id="player-name" type="text" placeholder="Username" /><br>
+        <button id="participate-button" >Participate</button>
+      </div>
     </div>
-    <div id="type-block">
-      <p>Typing: <span id="typing-text"></span>
-    </div>
-  </div>
-  <div id="action-block">
-    <div>
-    </div>
-    <div class="bakeries">
-      <div id="bakery-Cursor" class="bakery-item">
-        <span>Pointer</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Grandma" class="bakery-item">
-        <span>Grandma</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Farm" class="bakery-item">
-        <span>Farm</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Factory" class="bakery-item">
-        <span>Factory</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Mine" class="bakery-item">
-        <span>Mine</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Shipment" class="bakery-item">
-        <span>Shipment</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-AlchemyLab" class="bakery-item">
-        <span>AlchemyLab</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-Portal" class="bakery-item">
-        <span>Portal</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-TimeMachine" class="bakery-item">
-        <span>Time Machine</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-      <div id="bakery-AntimatterCondenser" class="bakery-item">
-        <span>Antimatter Condenser</span><br>
-        <span class="bakery-price">100</span>
-      </div>
-    </div>
-  </div>
-</main>
-<footer>
-  This application inspires to <a href="http://orteil.dashnet.org/cookieclicker/">Cookie Clicker</a>
-</footer>
-</div><!-- /wrapper -->
-<div id="cover">
-  <div id="initial-form">
-    <input id="player-name" type="text" placeholder="Username" /><br>
-    <button id="participate-button" >Participate</button>
-  </div>
-</div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/js/vendor/underscore.js" type="text/javascript"></script>
-<script src="/socket.io/socket.io.js" type="text/javascript"></script>
-<script src="/js/bakery.js" type="text/javascript"></script>
-<script src="/js/equip.js" type="text/javascript"></script>
-<script src="/js/player.js" type="text/javascript"></script>
-<script src="/js/client.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/js/vendor/underscore.js" type="text/javascript"></script>
+    <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+    <script src="/js/bakery.js" type="text/javascript"></script>
+    <script src="/js/equip.js" type="text/javascript"></script>
+    <script src="/js/player.js" type="text/javascript"></script>
+    <script src="/js/client.js" type="text/javascript"></script>
