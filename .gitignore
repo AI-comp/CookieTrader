@@ -2,7 +2,5 @@ node_modules
 /*.js
 model/*.js
 public/js/*.js
-*.js
 .DS_Store
-*/.DS_Store
 *.swp
