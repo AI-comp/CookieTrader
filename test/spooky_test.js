@@ -49,7 +49,7 @@ describe('Frontend tests', function() {
             context.spooky.on('run.complete', onComplete);
  
             context.spooky.run(function() {
-                this.test.done(1);
+                this.test.done();
             });
         });
     });
