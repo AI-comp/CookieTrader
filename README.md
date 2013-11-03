@@ -12,10 +12,11 @@ http://cookie-trader.herokuapp.com/
 4. Run ```run.bat``` on Windows / ```npm start``` on non-Windows
 
 ## How to run tests on Ubuntu
-1. sudo apt-get install libfontconfig1
-1. npm install phantomjs -g
-1. brew install casperjs
-2. 
+    sudo apt-get install libfontconfig1
+    npm install phantomjs -g
+    git clone git://github.com/n1k0/casperjs.git
+    cd casperjs
+    sudo ln -sf `pwd`/bin/casperjs /usr/local/bin/casperjs
 
 ## How to deploy on Heroku
 1. git remote add heroku git@heroku.com:cookie-trader.git
