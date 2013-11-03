@@ -1,6 +1,13 @@
+# General
+.DS_Store
+*.swp
+*~
+
+# Node
 node_modules
+*.log
+
+# CoffeeScript
 /*.js
 model/*.js
 public/js/*.js
-.DS_Store
-*.swp
