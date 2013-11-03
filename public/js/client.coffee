@@ -68,8 +68,8 @@ $ ->
       socket.emit('getInfo', { player: player })
     , 1000)
 
-  # WebSocketサーバに接続
-  socket = io.connect('http://localhost:5000/')
+  # Connect the WebSocket server
+  socket = io.connect(window.location.origin)
 
   socket.on 'connect', ->
     console.log('connect!')
