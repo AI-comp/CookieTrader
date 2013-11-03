@@ -11,7 +11,7 @@ http://cookie-trader.herokuapp.com/
 ```npm install -g coffee-script```
 4. Run ```run.bat``` on Windows / ```npm start``` on non-Windows
 
-## How to run tests
+## How to run tests on Ubuntu
 1. sudo apt-get install libfontconfig1
 1. npm install phantomjs -g
 1. brew install casperjs
