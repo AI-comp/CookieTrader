@@ -1,5 +1,5 @@
-Room = require('./model/room')
-Player = require('./public/js/player')
+Room = require('./room')
+Player = require('./player')
 room = new Room
 
 routes = (app) ->

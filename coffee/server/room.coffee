@@ -1,8 +1,8 @@
 _ = require('underscore')
 
-Player = require('../public/js/player')
-Bakery = require('../public/js/bakery')
-Equip = require('../public/js/equip')
+Player = require('./player')
+Bakery = require('./bakery')
+Equip = require('./equip')
 
 seedID = 1
 generateID = -> seedID++

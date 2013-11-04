@@ -8,6 +8,4 @@ node_modules
 *.log
 
 # CoffeeScript
-/*.js
-model/*.js
-public/js/*.js
+*.js
