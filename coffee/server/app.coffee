@@ -1,7 +1,7 @@
 express = require('express')
 http = require('http')
 io = require('socket.io')
-controller = require('./controller')
+controller = require('./server/controller')
 http = require('http')
 
 app = express()
