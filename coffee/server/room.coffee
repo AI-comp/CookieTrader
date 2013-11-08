@@ -25,7 +25,7 @@ class Room
 
   participatePlayer: (name) ->
     console.log('player++')
-    id = generateID
+    id = generateID()
     player = Player.newPlayer(id, name)
     @_players[id] = player
 
