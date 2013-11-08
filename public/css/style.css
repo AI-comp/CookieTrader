@@ -153,13 +153,16 @@ footer { background-color: #fee; }
   width: 150px;
 }
 
-.my-item {
+.item {
   position: relative;
-  color: #fff;
   height: 75px;
   cursor: pointer;
-  /*text-shadow:0px 0px 6px #000,0px 1px 1px #000;*/
   padding: 2px 5px;
+}
+
+.my-item {
+  color: #fff;
+  /*text-shadow:0px 0px 6px #000,0px 1px 1px #000;*/
 }
 
 .bakery-sell {

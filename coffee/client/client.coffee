@@ -49,6 +49,17 @@ $ ->
         $('#bakery-'+bakery+' .bakery-price').css("color","#6f6")
       else
         $('#bakery-'+bakery+' .bakery-price').css("color","#f66")
+    allPlayers = info.allPlayers
+    index = 1
+    for p in allPlayers
+      continue if p.id == player.id
+      $("#player#{index}-name").text(p.name)
+      for bakery, amount of p.bakeries
+        $("#player#{index}-#{bakery} .amount").text(amount)
+      index += 1
+
+
+
 
   startTimer = () ->
     curTime = new Date().getTime()
