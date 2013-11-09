@@ -54,6 +54,8 @@ $ ->
     for p in allPlayers
       continue if p.id == player.id
       $("#player#{index}-name").text(p.name)
+      $("#player#{index}-total-cookie").text(pretty(p.totalCookie))
+      $("#player#{index}-cps").text(pretty(Player.calcCPS(p.bakeries, p.equips)))
       for bakery, amount of p.bakeries
         $("#player#{index}-#{bakery} .amount").text(amount)
       index += 1
