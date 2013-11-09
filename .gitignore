@@ -9,3 +9,5 @@ node_modules
 
 # CoffeeScript
 *.js
+server/
+public/js/

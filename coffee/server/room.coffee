@@ -15,6 +15,12 @@ class Room
     @_players = {}
     @_globalBakeries = Bakery.newBakeries()
 
+  start: ->
+    @_startTime = new Date()
+
+  getTime: ->
+    new Date() - @_startTime
+
   enterAudience: ->
     console.log('audience++')
     @_audienceCount += 1

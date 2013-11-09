@@ -40,8 +40,8 @@ $ ->
   )()
 
   #server info
-  renderInfo = (info) ->
-    bakeries = info.bakeries
+  renderInfo = (serverInfo) ->
+    bakeries = serverInfo.bakeries
     for bakery, amount of bakeries
       $("#bakery-#{bakery} .amount").text(amount)
       $('#bakery-'+bakery+' .bakery-price').text(pretty(Bakery.calcPrice(bakeries, bakery)))
@@ -49,7 +49,8 @@ $ ->
         $('#bakery-'+bakery+' .bakery-price').css("color","#6f6")
       else
         $('#bakery-'+bakery+' .bakery-price').css("color","#f66")
-    allPlayers = info.allPlayers
+
+    allPlayers = serverInfo.allPlayers
     index = 1
     for p in allPlayers
       continue if p.id == player.id
@@ -58,7 +59,8 @@ $ ->
         $("#player#{index}-#{bakery} .amount").text(amount)
       index += 1
 
-
+    second = serverInfo.milliSeconds / 1000
+    $("#elapsed-time").text(pretty(second))
 
 
   startTimer = () ->
