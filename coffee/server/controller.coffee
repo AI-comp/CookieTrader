@@ -4,6 +4,8 @@ Player = require('./player')
 rooms = {}
 
 routes = (app) ->
+  app.get '/', (req, res) ->
+    res.send('Please access "/room/:id". :id indicates the room id. You can choose any string as a room id (e.g. /room/1).');
   app.get '/room/:id', (req, res) ->
     res.render 'index.ejs', {
       locals: {
