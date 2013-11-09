@@ -2,7 +2,7 @@
 <html role="application">
   <meta charset=utf-8>
   <title>Cookie Trader</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
   <body>
     <div id="wrapper" class="l-h-flex">
@@ -13,11 +13,11 @@
       <div class="l-flex-item l-h-flex">
         <div id="info-block" class="l-flex-item">
           <p>Elapsed Time: <span id="elapsed-time">0</span> seconds.</p>
-          <p><img src="img/cookie-48.png">
+          <p><img src="/img/cookie-48.png">
           You have <span id="my-total-cookie">0</span> cookies.</p>
-          <p><img src="img/cookie-48.png">
+          <p><img src="/img/cookie-48.png">
           You bake <span id="my-cps">0.0</span> cookies per seconds.</p>
-          <p><img src="img/cookie-48.png">
+          <p><img src="/img/cookie-48.png">
           You bake <span id="my-cpc">10.0</span> cookies per types.</p>
           <ul>
             <li>1st: id total cps</li>
@@ -48,7 +48,7 @@
                 <div class="amount">0</div>
                 <div class="bakery-name"><%= bakery %></div>
                 <div>
-                  <img src="img/cookie-24.png">
+                  <img src="/img/cookie-24.png">
                   <span class="bakery-price"></span>
                 </div>
               </div>
@@ -111,6 +111,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js" type="text/javascript"></script>
     <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    <!--
+    var roomId = <%= roomId %>;
+    // -->
+    </script>
     <script src="/js/bakery.js" type="text/javascript"></script>
     <script src="/js/equip.js" type="text/javascript"></script>
     <script src="/js/player.js" type="text/javascript"></script>

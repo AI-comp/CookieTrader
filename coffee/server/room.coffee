@@ -9,7 +9,8 @@ generateID = -> seedID++
 
 class Room
 
-  constructor: ->
+  constructor: (id) ->
+    @_id = id
     @_audienceCount = 0
     # FIXME: debug player hoge
     @_players = {}

@@ -88,6 +88,7 @@ $ ->
 
   socket.on 'connect', ->
     console.log('connect!')
+    socket.emit('enter', { roomId: roomId })
 
   socket.on 'disconnect', ->
     console.log("disconnect from server")

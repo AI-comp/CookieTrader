@@ -1,79 +1,88 @@
 Room = require('./room')
 Player = require('./player')
-room = new Room
+
+rooms = {}
 
 routes = (app) ->
-  app.get('/', (req, res) ->
-    res.render('index.ejs', {locals:{ message: "Hello, world!" }})
-  )
+  app.get '/room/:id', (req, res) ->
+    res.render 'index.ejs', {
+      locals: {
+        message: "Hello, world!",
+        roomId: req.params.id
+      }
+    }
 
 websocket = (io) ->
-  io.sockets.on('connection', (socket) ->
+  io.sockets.on 'connection', (socket) ->
 
-    room.enterAudience()
+    socket.on 'enter', (obj) ->
+      roomId = obj.roomId
+      if !(roomId in rooms)
+        rooms[roomId] = new Room(roomId)
+      rooms[roomId].enterAudience()
+      socket.set('roomId', roomId);
+      socket.join(roomId)
 
-    socket.on('message', (message) ->
-      socket.send(message)
-      socket.broadcast.emit(message)
-    )
+    socket.on 'participate', (obj) ->
+      socket.get 'roomId', (err, roomId) ->
+        room = rooms[roomId]
+        player = room.participatePlayer(obj.name)
+        socket.to(roomId).emit('participate', { player: player })
+        if room.isReady
+          socket.to(roomId).emit('start')
+          room.start()
 
-    socket.on('participate', (obj) ->
-      player = room.participatePlayer(obj.name)
-      socket.emit('participate', { player: player })
-      if room.isReady
-        socket.emit('start')
-        room.start()
-    )
+    socket.on 'getInfo', (obj) ->
+      socket.get 'roomId', (err, roomId) ->
+        room = rooms[roomId]
+        player = obj.player
+        room.updatePlayer(player)
+        socket.to(roomId).emit 'getInfo', {
+          allPlayers: room.allPlayers(),
+          bakeries: room.globalBakeries(),
+          milliSeconds: room.getTime()
+        }
 
-    socket.on('getInfo', (obj) ->
-      player = obj.player
-      room.updatePlayer(player)
-      socket.emit('getInfo', {
-        allPlayers: room.allPlayers(),
-        bakeries: room.globalBakeries(),
-        milliSeconds: room.getTime()
-      })
-    )
+    socket.on 'buy', (obj) ->
+      socket.get 'roomId', (err, roomId) ->
+        room = rooms[roomId]
+        player = obj.player
+        bakery = obj.bakery
+        # TODO: room.playerと同期する
+        price = room.buyBakery(player, bakery)
+        res =
+          if price?
+            {
+              status: 'ok'
+              bakery: bakery
+              price: price
+            }
+          else
+            {
+              status: 'ng'
+              message: 'cookie is not enough'
+            }
+        socket.to(roomId).emit('buy', res)
 
-    socket.on('buy', (obj) ->
-      player = obj.player
-      bakery = obj.bakery
-      # TODO: room.playerと同期する
-      price = room.buyBakery(player, bakery)
-      res =
-        if price?
-          {
-            status: 'ok'
-            bakery: bakery
-            price: price
-          }
-        else
-          {
-            status: 'ng'
-            message: 'cookie is not enough'
-          }
-      socket.emit('buy', res)
-    )
-
-    socket.on('sell', (obj) ->
-      player = obj.player
-      bakery = obj.bakery
-      price = room.sellBakery(player, bakery)
-      res =
-        if price?
-          {
-            status: 'ok'
-            bakery: bakery
-            price: price
-          }
-        else
-          {
-            status: 'ng'
-            message: 'bakery is not enough'
-          }
-      socket.emit('sell', res)
-    )
-  )
+    socket.on 'sell', (obj) ->
+      socket.get 'roomId', (err, roomId) ->
+        room = rooms[roomId]
+        player = obj.player
+        bakery = obj.bakery
+        price = room.sellBakery(player, bakery)
+        res =
+          if price?
+            {
+              status: 'ok'
+              bakery: bakery
+              price: price
+            }
+          else
+            {
+              status: 'ng'
+              message: 'bakery is not enough'
+            }
+        socket.to(roomId).emit('sell', res)
 
 exports.routes = routes
 exports.websocket = websocket
