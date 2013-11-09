@@ -35,86 +35,18 @@
             <span>Global Store</span>
           </div>
           <div class="bakeries">
-            <div id="bakery-Cursor" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Pointer</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
+            <% var bakeryList = ['Cursor', 'Grandma', 'Farm', 'Factory', 'Mine', 'Shipment', 'AlchemyLab', 'Portal', 'TimeMachine', 'AntimatterCondenser']; %>
+            <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
+              <% var bakery = bakeryList[i]; %>
+              <div id="bakery-<%= bakery %>" class="bakery-item">
+                <div class="amount">0</div>
+                <div class="bakery-name"><%= bakery %></div>
+                <div>
+                  <img src="img/cookie-24.png">
+                  <span class="bakery-price"></span>
+                </div>
               </div>
-            </div>
-            <div id="bakery-Grandma" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Grandma</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-Farm" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Farm</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-Factory" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Factory</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-Mine" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Mine</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-Shipment" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Shipment</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-AlchemyLab" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">AlchemyLab</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-Portal" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Portal</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-TimeMachine" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Time Machine</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
-            <div id="bakery-AntimatterCondenser" class="bakery-item">
-              <div class="amount">0</div>
-              <div class="bakery-name">Antimatter Condenser</div>
-              <div>
-                <img src="img/cookie-24.png">
-                <span class="bakery-price"></span>
-              </div>
-            </div>
+            <% } %>
           </div>
         </div>
         <div class="column">
@@ -122,189 +54,31 @@
             <span>Me</span>
           </div>
           <div class="bakeries">
-            <div id="my-Cursor" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Grandma" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Farm" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Factory" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Mine" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Shipment" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-AlchemyLab" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-Portal" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-TimeMachine" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="my-AntimatterCondenser" class="item my-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-          </div> <!--bakeries-->
-        </div> <!--column-->
-        <div class="column">
-          <div class="column-title">
-            <span id="player1-name">Player1</span>
+            <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
+              <% var b = bakeryList[i]; %>
+              <div id="my-<%= b %>" class="item my-item">
+                <div class="amount">0</div>
+                <div class="bakery-sell">Sell 1</div>
+              </div>
+            <% } %>
           </div>
-          <div class="bakeries">
-            <div id="player1-Cursor" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Grandma" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Farm" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Factory" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Mine" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Shipment" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-AlchemyLab" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-Portal" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-TimeMachine" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player1-AntimatterCondenser" class="item player1-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-          </div> <!--bakeries-->
         </div>
-        <div class="column">
-          <div class="column-title">
-            <span id="player2-name">Player2</span>
+        <% for (var idx=1; idx<4; idx++) { %>
+          <div class="column">
+            <div class="column-title">
+              <span id="player<%= idx %>-name">Player1</span>
+            </div>
+            <div class="bakeries">
+              <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
+                <% var bakery = bakeryList[i]; %>
+                <div id="player<%= idx %>-<%= bakery %>" class="item player<%= idx %>-item">
+                  <div class="amount">0</div>
+                  <div class="bakery-sell">Sell 1</div>
+                </div>
+              <% } %>
+            </div>
           </div>
-          <div class="bakeries">
-            <div id="player2-Cursor" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Grandma" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Farm" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Factory" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Mine" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Shipment" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-AlchemyLab" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-Portal" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-TimeMachine" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player2-AntimatterCondenser" class="item player2-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-          </div> <!--bakeries-->
-        </div>
-        <div class="column">
-          <div class="column-title">
-            <span id="player3-name">Player3</span>
-          </div>
-          <div class="bakeries">
-            <div id="player3-Cursor" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Grandma" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Farm" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Factory" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Mine" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Shipment" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-AlchemyLab" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-Portal" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-TimeMachine" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-            <div id="player3-AntimatterCondenser" class="item player3-item">
-              <div class="amount">0</div>
-              <div class="bakery-sell">Sell 1</div>
-            </div>
-          </div> <!--bakeries-->
-        </div>
+        <% } %>
       </div>
       </main>
       <footer>
