@@ -34,6 +34,12 @@
           <div class="bakery-title">
             <span>Global Store</span>
           </div>
+          <div class="row row-title row-total-cookie">
+            Total Cookies
+          </div>
+          <div class="row row-title row-cps">
+            CPS
+          </div>
           <div class="bakeries">
             <% var bakeryList = ['Cursor', 'Grandma', 'Farm', 'Factory', 'Mine', 'Shipment', 'AlchemyLab', 'Portal', 'TimeMachine', 'AntimatterCondenser']; %>
             <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
@@ -53,10 +59,14 @@
           <div class="column-title">
             <span>Me</span>
           </div>
+          <div class="row row-total-cookie">
+          </div>
+          <div class="row row-cps">
+          </div>
           <div class="bakeries">
             <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
               <% var b = bakeryList[i]; %>
-              <div id="my-<%= b %>" class="item my-item">
+              <div id="my-<%= b %>" class="row my-item">
                 <div class="amount">0</div>
                 <div class="bakery-sell">Sell 1</div>
               </div>
@@ -68,10 +78,16 @@
             <div class="column-title">
               <span id="player<%= idx %>-name">Player1</span>
             </div>
+            <div id="player<%= idx %>-total-cookie" class="row row-total-cookie">
+              foo!
+            </div>
+            <div id="player<%= idx %>-cps" class="row row-cps">
+              bar!
+            </div>
             <div class="bakeries">
               <% for (var i=0, len=bakeryList.length; i<len; i++) { %>
                 <% var bakery = bakeryList[i]; %>
-                <div id="player<%= idx %>-<%= bakery %>" class="item player<%= idx %>-item">
+                <div id="player<%= idx %>-<%= bakery %>" class="row player<%= idx %>-item">
                   <div class="amount">0</div>
                   <div class="bakery-sell">Sell 1</div>
                 </div>

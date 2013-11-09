@@ -153,11 +153,25 @@ footer { background-color: #fee; }
   width: 150px;
 }
 
-.item {
+.row {
   position: relative;
   height: 75px;
   cursor: pointer;
   padding: 2px 5px;
+}
+
+.row-total-cookie {
+  height: 32px;
+  padding: 8px;
+  font-size: 24px;
+  text-align: right;
+}
+
+.row-cps {
+  height: 32px;
+  padding: 8px;
+  font-size: 24px;
+  text-align: right;
 }
 
 .my-item {
