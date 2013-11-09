@@ -4,7 +4,10 @@ Welcom to Cookie Trader
 http://cookie-trader.herokuapp.com/
 
 ## How to start server
-    npm start
+1. ```npm start```
+2. Open "http://localhost:5000/room/1".
+Note that 1 indicates the room id and you can use any string as a room id instead of 1.
+
 
 ## How to prepare develop environment
 1. Install node.js (http://nodejs.org/)
