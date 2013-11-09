@@ -3,6 +3,9 @@
 Welcom to Cookie Trader
 http://cookie-trader.herokuapp.com/
 
+## How to start server
+    npm start
+
 ## How to prepare develop environment
 1. Install node.js (http://nodejs.org/)
 2. Install dependecies  
